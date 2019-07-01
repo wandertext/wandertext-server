@@ -15,3 +15,18 @@ exports.updateEntry = functions.firestore
       .doc()
       .set(previousValue);
   });
+
+exports.updatePlace = functions.firestore
+  .document("places/{placeId}")
+  .onUpdate(change => {
+    const { ref } = change.after;
+    const newValue = change.after.data();
+    const previousValue = change.before.data();
+    const now = admin.firestore.Timestamp.now();
+    newValue.modifiedOn = now;
+    previousValue.replacedOn = now;
+    return ref
+      .collection("revisions")
+      .doc()
+      .set(previousValue);
+  });
