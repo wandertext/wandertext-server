@@ -39,5 +39,29 @@
     "fortune-json-api": "^2.2.0",
     "graphql": "^14.4.1",
     "xo": "^0.24.0"
+  },
+  "xo": {
+    "envs": [
+      "amd"
+    ],
+    "globals": [
+      "it",
+      "describe"
+    ],
+    "prettier": true,
+    "space": true,
+    "rules": {
+      "require-await": 0,
+      "quotes": [
+        "error",
+        "double"
+      ]
+    },
+    "overrides": [
+    ]
+  },
+  "prettier": {
+    "singleQuote": false,
+    "bracketSpacing": true
   }
 }
