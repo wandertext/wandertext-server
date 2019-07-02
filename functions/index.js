@@ -9,7 +9,7 @@ exports.updateEntry = functions.firestore
     // If the times are the same, then something else has changed.
     // That means update the times. The next time through, it will
     // simply resolve quietly.
-    if (previousValue.modifiedOn === newValue.modifiedOn) {
+    if (previousValue.modifiedOn._seconds === newValue.modifiedOn._seconds) {
       const { ref } = change.after;
       const now = admin.firestore.Timestamp.now();
       previousValue.archivedOn = now;
@@ -18,7 +18,7 @@ exports.updateEntry = functions.firestore
           .collection("revisions")
           .doc()
           .set(previousValue),
-        ref.update({ modifiedOn: now })
+        ref.set({ modifiedOn: now }, { merge: true })
       ]);
     }
 
@@ -30,7 +30,7 @@ exports.updatePlace = functions.firestore
   .onUpdate(change => {
     const previousValue = change.before.data();
     const newValue = change.after.data();
-    if (previousValue.modifiedOn === newValue.modifiedOn) {
+    if (previousValue.modifiedOn._seconds === newValue.modifiedOn._seconds) {
       const { ref } = change.after;
       const now = admin.firestore.Timestamp.now();
       previousValue.archivedOn = now;
@@ -39,7 +39,7 @@ exports.updatePlace = functions.firestore
           .collection("revisions")
           .doc()
           .set(previousValue),
-        ref.update({ modifiedOn: now })
+        ref.set({ modifiedOn: now }, { merge: true })
       ]);
     }
 
