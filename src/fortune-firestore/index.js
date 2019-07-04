@@ -1,9 +1,9 @@
 "use strict";
 
-import Firestore from "@google-cloud/firestore";
-import applyUpdate from "fortune/lib/common/apply_update";
+const Firestore = require("@google-cloud/firestore");
+const applyUpdate = require("fortune/lib/common/apply_update");
 
-export default Adapter =>
+exports.firestoreAdapter = Adapter =>
   class FirestoreAdapter extends Adapter {
     connect() {
       if (!this._db) {

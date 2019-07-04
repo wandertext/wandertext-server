@@ -1,3 +1,1 @@
-import dotenv from "dotenv"
-
-dotenv.config({ silent: true });
+require("dotenv").config({ silent: true });
