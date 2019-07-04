@@ -1,4 +1,5 @@
 .env
 .firebaserc
+app.yaml
 node_modules
 wandertext*.json
