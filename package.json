@@ -8,6 +8,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "start": "node src/index.js",
     "serve": "nodemon src/index.js --exec babel-node -e js",
     "lint": "xo *.js"
   },
