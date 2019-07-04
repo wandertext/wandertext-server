@@ -81,8 +81,11 @@ exports.store = function() {
           },
           namespace: "",
           projectId: process.env.FIRESTORE_PROJECT_ID,
-          client_email: process.env.FIRESTORE_CLIENT_EMAIL,
-          private_key: process.env.FIRESTORE_PRIVATE_KEY
+          keyFilename: process.env.DATASTORE_KEYFILE,
+          credentials: {
+            client_email: process.env.FIRESTORE_CLIENT_EMAIL,
+            private_key: process.env.FIRESTORE_PRIVATE_KEY
+          }
         }
       ]
     }
