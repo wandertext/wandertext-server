@@ -2,6 +2,7 @@
 
 const Firestore = require("@google-cloud/firestore");
 const applyUpdate = require("fortune/lib/common/apply_update");
+const buildQuery = require("./build-query");
 
 exports.firestoreAdapter = Adapter =>
   class FirestoreAdapter extends Adapter {
@@ -9,10 +10,7 @@ exports.firestoreAdapter = Adapter =>
       if (!this._db) {
         this._db = new Firestore({
           projectId: this.options.projectId,
-          credentials: {
-            client_email: this.options.client_email,
-            private_key: this.options.private_key
-          }
+          credentials: this.options.credentials
         });
       }
 
@@ -38,15 +36,15 @@ exports.firestoreAdapter = Adapter =>
       );
     }
 
-    find(type, ids) {
+    find(type, ids, options) {
+      console.log("in find:", type, ids, options );
       const collection = this.options.typeMap[type];
       if (ids && ids.length === 0) {
         return super.find();
       }
 
       if (!ids) {
-        return this._db
-          .collection(collection)
+        return buildQuery(this._db.collection(collection), options)
           .get()
           .then(ref => ref.docs.map(doc => doc.data()))
           .catch(error => console.log(error));
