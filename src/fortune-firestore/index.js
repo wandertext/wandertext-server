@@ -37,14 +37,13 @@ exports.firestoreAdapter = Adapter =>
     }
 
     find(type, ids, options) {
-      console.log("in find:", type, ids, options );
       const collection = this.options.typeMap[type];
       if (ids && ids.length === 0) {
         return super.find();
       }
 
       if (!ids) {
-        return buildQuery(this._db.collection(collection), options)
+        return buildQuery(this._db.collection(collection), options, this.options.typeMap)
           .get()
           .then(ref => ref.docs.map(doc => doc.data()))
           .catch(error => console.log(error));

@@ -15,12 +15,17 @@ exports.expressApp = function() {
   app.use(cors());
 
   const fortuneListener = fortuneHTTP(store(), {
-    serializers: [[jsonApiSerializer]]
+    serializers: [[jsonApiSerializer, {keys: ["id"], key: "id"}]]
   });
 
-  app.use((req, res) =>
+  app.use((req, res) =>{
+    console.log(req.url);
     fortuneListener(req, res).catch(error => console.log(error))
-  );
+  });
+
+  app.get("/favico.ico", (req, res) => {
+    res.sendStatus(404);
+  });
 
   return app;
 };
