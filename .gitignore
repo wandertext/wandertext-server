@@ -3,3 +3,4 @@
 app.yaml
 node_modules
 wandertext*.json
+dist
