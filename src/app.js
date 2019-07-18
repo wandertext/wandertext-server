@@ -1,9 +1,9 @@
 /* eslint no-unused-vars: 0 */
-const express = require("express");
-const cors = require("cors");
-const _ = require("./env");
+import express from "express";
+import cors from "cors";
+import _ from "./env";
 
-exports.expressApp = function() {
+export default function() {
   const app = express();
 
   app.use(cors());

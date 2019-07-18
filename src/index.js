@@ -1,4 +1,4 @@
-const { expressApp } = require("./app");
+import expressApp from "./app";
 
 const port = process.env.PORT || 4040
 
