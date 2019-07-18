@@ -21,6 +21,8 @@ export default function() {
     res.sendStatus(404);
   });
 
+  app.get("/", (req, res) => res.send("Lolwhut."));
+
   app.get("/baburnama", async (req, res) => {
     const entries = await db
       .collection("entries")
@@ -37,6 +39,11 @@ export default function() {
       places.push(place);
     }
 
+    const babur = await db
+      .doc("texts/baburnama-1530")
+      .get()
+      .then(r => r.data());
+
     const contributors = [];
     for (const contributorId of babur.contributors) {
       const contributor = await db
@@ -46,11 +53,8 @@ export default function() {
       contributors.push(contributor);
     }
 
-    const babur = await db
-      .doc("texts/baburnama-1530")
-      .get()
-      .then(r => r.data());
     babur.entries = entries;
+
     res.json({ contributors, places, babur });
   });
 
