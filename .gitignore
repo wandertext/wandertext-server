@@ -5,3 +5,4 @@ node_modules
 wandertext*.json
 dist
 firestore-debug.log
+firebase-debug.log
