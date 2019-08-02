@@ -2,7 +2,7 @@
 const Firestore = require("@google-cloud/firestore");
 require("dotenv").config();
 
-exports.connectToFirestore = function() {
+module.exports = function() {
   return new Firestore({
     projectId: process.env.FIRESTORE_PROJECT_ID,
     credentials: {
