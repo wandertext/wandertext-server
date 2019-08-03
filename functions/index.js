@@ -16,7 +16,7 @@ exports.updateEntry = functions.firestore
       return Promise.all([
         ref
           .collection("revisions")
-          .doc()
+          .doc(`${now._seconds}.${now._nanoseconds}`)
           .set(previousValue),
         ref.set({ modifiedOn: now }, { merge: true })
       ]);
@@ -37,7 +37,7 @@ exports.updatePlace = functions.firestore
       return Promise.all([
         ref
           .collection("revisions")
-          .doc()
+          .doc(`${now._seconds}.${now._nanoseconds}`)
           .set(previousValue),
         ref.set({ modifiedOn: now }, { merge: true })
       ]);
