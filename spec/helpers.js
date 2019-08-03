@@ -13,8 +13,10 @@ module.exports.setup = async (auth, data) => {
   // Mock documents before rules
   if (data) {
     for (const key in data) {
-      const ref = db.doc(key);
-      await ref.set(data[key]);
+      if ({}.hasOwnProperty.call(data, key)) {
+        const ref = db.doc(key);
+        await ref.set(data[key]);
+      }
     }
   }
 
@@ -30,33 +32,3 @@ module.exports.setup = async (auth, data) => {
 module.exports.teardown = async () => {
   Promise.all(firebase.apps().map(app => app.delete()));
 };
-
-expect.extend({
-  async toAllow(x) {
-    let pass = false;
-    try {
-      await firebase.assertSucceeds(x);
-      pass = true;
-    } catch (error) {}
-
-    return {
-      pass,
-      message: () => "Expected Firebase operation to be allowed, but it failed"
-    };
-  }
-});
-
-expect.extend({
-  async toDeny(x) {
-    let pass = false;
-    try {
-      await firebase.assertFails(x);
-      pass = true;
-    } catch (error) {}
-    return {
-      pass,
-      message: () => 
-      "Expected Firebase operation to be denied, but it was allowed"
-    };
-  }
-});
