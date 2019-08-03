@@ -1,19 +1,21 @@
+require("./spec-helper");
+const { expect } = require("chai");
 const { setup, teardown } = require("./helpers");
 
-describe("Database rules", () => {
+describe("General Deny ALL database rules", function() {
   let db;
   let ref;
 
-  beforeAll(async () => {
+  before(async function() {
     db = await setup();
     ref = db.collection("some-nonexistent-collection");
   });
 
-  afterAll(async () => {
+  after(async function() {
     await teardown();
   });
 
-  test("fail when reading/writing an unauthorized collection", async () => {
-    await expect(ref.get()).toDeny();
+  it("fails when reading/writing an unauthorized collection", async function() {
+    return expect(ref.get()).to.eventually.be.denied;
   });
 });

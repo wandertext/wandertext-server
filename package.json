@@ -56,7 +56,8 @@
       {
         "files": "spec/*.spec.js",
         "rules": {
-          "prefer-arrow-callback": 0
+          "prefer-arrow-callback": 0,
+          "import/no-unassigned-import": 0
         },
         "envs": [
           "mocha"
