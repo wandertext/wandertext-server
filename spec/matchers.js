@@ -4,7 +4,7 @@ const { expect } = require("chai");
 module.exports.allowed = ({ Assertion }, utils) => {
   utils.addProperty(Assertion.prototype, "allowed", async function() {
     this.assert(
-      expect(this).to.eventually.be.fulfulled,
+      expect(this).to.eventually.be.fulfilled,
       "expected #{this} to be allowed",
       "expected #{this} to not be allowed"
     );
