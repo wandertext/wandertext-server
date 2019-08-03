@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "test:rules": "npx jest spec/basic.spec.js",
+    "test:rules": "npx mocha spec/basic.spec.js",
     "build:main": "babel -q --copy-files --out-dir dist --ignore *.test.js src",
     "build": "webpack",
     "start": "node dist/index.js",
@@ -21,7 +21,7 @@
     "@babel/preset-env": "^7.5.4",
     "@firebase/testing": "^0.11.9",
     "chai": "^4.2.0",
-    "jest": "^24.8.0",
+    "chai-as-promised": "^7.1.1",
     "mocha": "^6.1.4",
     "nodemon": "^1.19.1",
     "webpack": "^4.36.1",
@@ -40,23 +40,29 @@
   },
   "xo": {
     "envs": [
-      "amd",
-      "jest"
-    ],
-    "globals": [
-      "it",
-      "describe"
+      "amd"
     ],
     "prettier": true,
     "space": true,
     "rules": {
       "require-await": 0,
+      "no-await-in-loop": 0,
       "quotes": [
         "error",
         "double"
       ]
     },
-    "overrides": []
+    "overrides": [
+      {
+        "files": "spec/*.spec.js",
+        "rules": {
+          "prefer-arrow-callback": 0
+        },
+        "envs": [
+          "mocha"
+        ]
+      }
+    ]
   },
   "prettier": {
     "singleQuote": false,
