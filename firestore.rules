@@ -10,15 +10,26 @@ service cloud.firestore {
     }
 
     // Collection based:
+    // contributors
+    match /contributors/{docId} {
+      allow read: if request.auth.uid != null;
+    }
 
     // entries
     match /entries/{docId} {
       allow read;
+      allow write: if request.auth.uid != null;
+    }
+
+    // flags
+    match /flags/{docId} {
+      allow write: if request.auth.uid != null;
     }
 
     // places
     match /places/{docId} {
       allow read;
+      allow write: if request.auth.uid != null;
     }
 
     // texts

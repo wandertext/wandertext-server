@@ -24,7 +24,7 @@ describe("An unauthenticated API user", function() {
     return expect(contributorsRef.get()).to.eventually.be.denied;
   });
 
-  it("can read the entries, places, and flags collections", async function() {
+  it("can read the entries, places, and texts collections", async function() {
     for (const collection of collections.slice(2)) {
       const ref = db.collection(collection);
       await expect(ref.get()).to.eventually.be.fulfilled;
