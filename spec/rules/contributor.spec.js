@@ -2,14 +2,28 @@ require("../spec-helper");
 const { expect } = require("chai");
 const { setup, teardown } = require("../helpers");
 
+const data = {
+  "contributors/enabledContributor": {
+    enabled: true,
+    email: "contributor@wandertext.space"
+  },
+  "contributors/disabledContributor": {
+    enabled: false,
+    email: "disabled@wandertext.space"
+  }
+};
+
 describe("An authenticated contributor", function() {
   let db;
 
   before(async function() {
-    db = await setup({
-      uid: "someContributorId",
-      email: "contributor@wandertext.space"
-    });
+    db = await setup(
+      {
+        uid: "someContributorId",
+        email: "contributor@wandertext.space"
+      },
+      data
+    );
   });
 
   after(async function() {
