@@ -7,6 +7,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "test:all": "npx mocha spec/**/*.spec.js",
     "test:rules": "npx mocha spec/rules/*.spec.js --reporter nyan --color true",
     "build:main": "babel -q --copy-files --out-dir dist --ignore *.test.js src",
     "build": "webpack",
@@ -54,7 +55,7 @@
     },
     "overrides": [
       {
-        "files": "spec/*.spec.js",
+        "files": "spec/**/*.spec.js",
         "rules": {
           "prefer-arrow-callback": 0,
           "import/no-unassigned-import": 0
