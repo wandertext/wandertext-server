@@ -2,7 +2,7 @@ require("../spec-helper");
 const { expect } = require("chai");
 const { setup, teardown } = require("../helpers");
 
-describe("General Deny ALL database rules", function() {
+describe("Someone off the street", function() {
   let db;
   let ref;
 
@@ -15,7 +15,7 @@ describe("General Deny ALL database rules", function() {
     await teardown();
   });
 
-  it("fails when reading/writing an unauthorized collection", async function() {
+  it("cannot access an arbitrary collection", async function() {
     return expect(ref.get()).to.eventually.be.denied;
   });
 });
