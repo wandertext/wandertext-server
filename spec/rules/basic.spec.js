@@ -1,6 +1,6 @@
-require("./spec-helper");
+require("../spec-helper");
 const { expect } = require("chai");
-const { setup, teardown } = require("./helpers");
+const { setup, teardown } = require("../helpers");
 
 describe("General Deny ALL database rules", function() {
   let db;

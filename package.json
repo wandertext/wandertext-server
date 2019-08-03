@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "test:rules": "npx mocha spec/basic.spec.js",
+    "test:rules": "npx mocha spec/rules/*.spec.js --reporter nyan --color true",
     "build:main": "babel -q --copy-files --out-dir dist --ignore *.test.js src",
     "build": "webpack",
     "start": "node dist/index.js",
