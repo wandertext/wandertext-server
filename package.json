@@ -9,10 +9,11 @@
   "scripts": {
     "test:all": "npx mocha spec/**/*.spec.js",
     "test:rules": "npx mocha spec/rules/*.spec.js --reporter nyan --color true",
-    "build:main": "babel -q --copy-files --out-dir dist --ignore *.test.js src",
-    "build": "webpack",
+    "clean": "rimraf dist/",
+    "build": "yarn clean && babel -q --copy-files --out-dir dist --ignore *.test.js src",
     "start": "node dist/index.js",
-    "serve": "nodemon dist/index.js",
+    "serve": "yarn build && nodemon dist/index.js",
+    "deploy:server": "yarn build && gcloud app deploy",
     "lint": "xo *.js"
   },
   "devDependencies": {
@@ -25,6 +26,7 @@
     "chai-as-promised": "^7.1.1",
     "mocha": "^6.2.0",
     "nodemon": "^1.19.1",
+    "rimraf": "^2.6.3",
     "webpack": "^4.39.1",
     "webpack-cli": "^3.3.6",
     "xo": "^0.24.0"
