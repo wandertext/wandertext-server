@@ -21,9 +21,72 @@ export default function() {
     res.sendStatus(404);
   });
 
-  app.get("/", (req, res) => res.send("Lolwhut."));
+  app.get("/", (req, res) => res.send("Wandertext API."));
 
-  app.get("/baburnama", async (req, res) => {
+  app.get("/baburnama-csv", async (req, res) => {
+    const entries = await db
+      .collection("entries")
+      .where("text", "==", "baburnama-1530")
+      .get()
+      .then(r => r.docs.map(d => d.data()));
+    const places = {};
+    const placeIds = [...new Set(entries.map(e => e.place))];
+    for (const placeId of placeIds) {
+      const place = await db
+        .doc(`places/${placeId}`)
+        .get()
+        .then(r => r.data());
+      places[placeId] = place;
+    }
+
+    const babur = await db
+      .doc("texts/baburnama-1530")
+      .get()
+      .then(r => r.data());
+
+    const header = [
+      "id",
+      "attestedName",
+      "latitude",
+      "longitude",
+      ...babur.entryProperties.map(prop => prop.name)
+    ];
+
+    const csv = [header];
+    for (const entry of entries) {
+      const row = [
+        entry.id,
+        entry.attestedName,
+        places[entry.place].latitude,
+        places[entry.place].longitude
+      ];
+      babur.entryProperties.forEach(prop => {
+        row.push(entry.properties[prop.name]);
+      });
+      csv.push(row);
+    }
+
+    res.statusCode = 200;
+    res.setHeader("Content-Type", "text/csv");
+
+    csv.forEach(row => {
+      res.write(
+        row
+          .map(field => {
+            if (field) {
+              return `"${field}"`;
+            }
+
+            return "";
+          })
+          .join(",") + "\r\n"
+      );
+    });
+
+    res.end();
+  });
+
+  app.get("/baburnama-json", async (req, res) => {
     const entries = await db
       .collection("entries")
       .where("text", "==", "baburnama-1530")
