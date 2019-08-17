@@ -1,8 +1,12 @@
 /* eslint no-unused-vars: 0, camelcase: 0, no-await-in-loop: 0 */
 import express from "express";
+import bodyParser from "body-parser";
 import cors from "cors";
 import Firestore from "@google-cloud/firestore";
+import fortuneHTTP from "fortune-http";
+import jsonApiSerializer from "fortune-json-api";
 import _ from "./env";
+import store from "./store";
 
 export default function() {
   const app = express();
@@ -15,7 +19,13 @@ export default function() {
     }
   });
 
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: true }));
   app.use(cors());
+
+  const fortuneListener = fortuneHTTP(store(), {
+    serializers: [[jsonApiSerializer, { keys: ["id"], key: "id" }]]
+  });
 
   app.get("/favico.ico", (req, res) => {
     res.sendStatus(404);
@@ -119,6 +129,10 @@ export default function() {
     babur.entries = entries;
 
     res.json({ contributors, places, babur });
+  });
+
+  app.use((req, res) => {
+    fortuneListener(req, res).catch(error => console.log(error));
   });
 
   return app;

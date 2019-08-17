@@ -1,14 +1,15 @@
 /* eslint camelcase: 0 unicorn/new-for-builtins: 0 */
 const fortune = require("fortune");
-const { firestoreAdapter } = require("./fortune-firestore");
+const FirestoreAdapter = require("fortune-firestore");
 
-exports.store = function() {
+export default function() {
   return fortune(
     {
       contributor: {
         authentication: String,
         firstName: String,
         lastName: String,
+        wandertextId: String,
         enabled: Boolean,
         editor: Boolean,
         admin: Boolean,
@@ -29,6 +30,7 @@ exports.store = function() {
         popupTemplate: String,
         year: Number,
         public: Boolean,
+        pageByPage: Boolean,
         entryProperties: Array,
         entrySort: Array,
         createdOn: Date,
@@ -70,7 +72,7 @@ exports.store = function() {
     },
     {
       adapter: [
-        firestoreAdapter,
+        FirestoreAdapter,
         {
           typeMap: {
             contributor: "contributors",
@@ -79,9 +81,7 @@ exports.store = function() {
             place: "places",
             text: "texts"
           },
-          namespace: "",
           projectId: process.env.FIRESTORE_PROJECT_ID,
-          keyFilename: process.env.DATASTORE_KEYFILE,
           credentials: {
             client_email: process.env.FIRESTORE_CLIENT_EMAIL,
             private_key: process.env.FIRESTORE_PRIVATE_KEY
@@ -91,3 +91,4 @@ exports.store = function() {
     }
   );
 };
+
