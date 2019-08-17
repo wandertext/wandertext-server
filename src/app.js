@@ -84,12 +84,12 @@ export default function() {
         row
           .map(field => {
             if (field) {
-              return `"${field}"`;
+              return `${field}`;
             }
 
             return "";
           })
-          .join(",") + "\r\n"
+          .join("\t") + "\r\n"
       );
     });
 
@@ -112,6 +112,14 @@ export default function() {
       places.push(place);
     }
 
+    for (const entry of entries) {
+      if (places[entry.place]) {
+        entry.latitude = places[entry.place].latitude;
+        entry.longitude = places[entry.place].longitude;
+        entry.placeName = places[entry.place].placeName;
+      }
+    }
+      
     const babur = await db
       .doc("texts/baburnama-1530")
       .get()
@@ -128,7 +136,8 @@ export default function() {
 
     babur.entries = entries;
 
-    res.json({ contributors, places, babur });
+    // res.json({ contributors, places, babur });
+    res.json(entries);
   });
 
   app.use((req, res) => {
