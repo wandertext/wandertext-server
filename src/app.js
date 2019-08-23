@@ -2,38 +2,31 @@
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-import Firestore from "@google-cloud/firestore";
-import fortuneHTTP from "fortune-http";
-import jsonApiSerializer from "fortune-json-api";
-import _ from "./env";
-import store from "./store";
+import firestore from "./firestore";
+import apollo from "./graphql";
 
 export default function() {
   const app = express();
 
-  const db = new Firestore({
-    projectId: process.env.FIRESTORE_PROJECT_ID,
-    credentials: {
-      client_email: process.env.FIRESTORE_CLIENT_EMAIL,
-      private_key: process.env.FIRESTORE_PRIVATE_KEY
-    }
+  const db = firestore;
+
+  apollo.applyMiddleware({
+    app,
+    path: "/apollo",
+    bodyParserConfig: { limit: "50mb" }
   });
 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(cors());
 
-  const fortuneListener = fortuneHTTP(store(), {
-    serializers: [[jsonApiSerializer, { keys: ["id"], key: "id" }]]
-  });
-
-  app.get("/favico.ico", (req, res) => {
+  app.get("/favico.ico", (_, res) => {
     res.sendStatus(404);
   });
 
-  app.get("/", (req, res) => res.send("Wandertext API."));
+  app.get("/", (_, res) => res.send("Wandertext API."));
 
-  app.get("/baburnama-csv", async (req, res) => {
+  app.get("/baburnama-csv", async (_, res) => {
     const entries = await db
       .collection("entries")
       .where("text", "==", "baburnama-1530")
@@ -119,7 +112,7 @@ export default function() {
         entry.placeName = places[entry.place].placeName;
       }
     }
-      
+
     const babur = await db
       .doc("texts/baburnama-1530")
       .get()
@@ -144,8 +137,6 @@ export default function() {
     if (process.env.NODE_ENV === "development") {
       process.stdout.write(`${req.url}\n`);
     }
-
-    fortuneListener(req, res).catch(error => console.log(error));
   });
 
   return app;
