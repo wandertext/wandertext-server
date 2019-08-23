@@ -141,6 +141,10 @@ export default function() {
   });
 
   app.use((req, res) => {
+    if (process.env.NODE_ENV === "development") {
+      process.stdout.write(`${req.url}\n`);
+    }
+
     fortuneListener(req, res).catch(error => console.log(error));
   });
 
