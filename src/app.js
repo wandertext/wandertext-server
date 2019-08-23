@@ -12,7 +12,7 @@ export default function() {
 
   apollo.applyMiddleware({
     app,
-    path: "/apollo",
+    path: "/",
     bodyParserConfig: { limit: "50mb" }
   });
 
@@ -23,8 +23,6 @@ export default function() {
   app.get("/favico.ico", (_, res) => {
     res.sendStatus(404);
   });
-
-  app.get("/", (_, res) => res.send("Wandertext API."));
 
   app.get("/baburnama-csv", async (_, res) => {
     const entries = await db
