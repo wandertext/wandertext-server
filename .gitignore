@@ -6,3 +6,4 @@ wandertext*.json
 dist
 firestore-debug.log
 firebase-debug.log
+yarn-error.log
