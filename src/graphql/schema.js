@@ -2,6 +2,7 @@ import { gql } from "apollo-server-express";
 
 const typeDefs = gql`
   scalar JSON
+  scalar Timestamp
 
   type Text {
     id: ID!
@@ -9,12 +10,15 @@ const typeDefs = gql`
     popupTemplate: String
     markdownName: String
     markdownBlurb: String
+    url: String
     imgSrc: String
     imgCredit: String
     imgHref: String
     year: Int
     entryProperties: [EntryProperty]
     entrySort: [String]
+    createdOn: Timestamp
+    modifiedOn: Timestamp
     contributors: [Contributor]
     entries: [Entry]
     flags: [Flag]
@@ -35,6 +39,8 @@ const typeDefs = gql`
     properties: JSON
     attestedName: String
     note: String
+    createdOn: Timestamp
+    modifiedOn: Timestamp
     contributors: [Contributor]
     place: Place
     flags: [Flag]
@@ -48,25 +54,35 @@ const typeDefs = gql`
     enabled: Boolean
     editor: Boolean
     admin: Boolean
+    createdOn: Timestamp
+    modifiedOn: Timestamp
     entries: [Entry]
     texts: [Text]
+    flags: [Flag]
   }
 
   type Place {
     id: ID!
     name: String!
     note: String
+    source: String
     latitude: Float
     longitude: Float
     geonameId: Int
     confidence: Int
     bbox: String
-    source: String
+    createdOn: Timestamp
+    modifiedOn: Timestamp
+    entries: [Entry]
+    contributors: [Contributor]
+    flags: [Flag]
   }
 
   type Flag {
     id: ID!
     comment: String!
+    createdOn: Timestamp
+    modifiedOn: Timestamp
     entry: Entry
     place: Place
     text: Text

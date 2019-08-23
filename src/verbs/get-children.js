@@ -1,7 +1,7 @@
-import { firestore } from "firebase-admin";
+import firestore from "../firestore";
 
 export default function(childrenType, parentId, parentType) {
-  return firestore()
+  return firestore
     .collection(childrenType)
     .where(parentType, "==", parentId)
     .get()

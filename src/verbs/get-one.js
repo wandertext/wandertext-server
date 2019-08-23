@@ -1,7 +1,7 @@
-import { firestore } from "firebase-admin";
+import firestore from "../firestore";
 
 export default function(collection, id) {
-  return firestore()
+  return firestore
     .doc(`${collection}/${id}`)
     .get()
     .then(doc => doc.data())

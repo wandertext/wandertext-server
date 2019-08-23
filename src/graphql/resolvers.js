@@ -1,10 +1,14 @@
-import { firestore } from "firebase-admin";
 import { ApolloError } from "apollo-server-express";
+import GraphQLJSON from "graphql-type-json";
+import firestore from "../firestore";
 import getAll from "../verbs/get-all";
 import getOne from "../verbs/get-one";
 import getChildren from "../verbs/get-children";
+import GraphQLTimestamp from "./timestamp";
 
 const resolvers = {
+  Timestamp: GraphQLTimestamp,
+  JSON: GraphQLJSON,
   Query: {
     contributor: (_, { id }) => getOne("contributors", id),
     contributors: () => getAll("contributors"),
@@ -16,7 +20,7 @@ const resolvers = {
   Contributor: {
     async entries(contributor) {
       try {
-        const ref = await firestore()
+        const ref = await firestore
           .collection("entries")
           .where("contributors", "array-contains", contributor.id)
           .get();
@@ -27,7 +31,7 @@ const resolvers = {
     },
     async texts(contributor) {
       try {
-        const ref = await firestore()
+        const ref = await firestore
           .collection("texts")
           .where("contributors", "array-contains", contributor.id)
           .get();
@@ -40,9 +44,7 @@ const resolvers = {
   Entry: {
     async contributors(entry) {
       try {
-        const ref = await firestore()
-          .collection("contributors")
-          .get();
+        const ref = await firestore.collection("contributors").get();
         return entry.contributors.map(id =>
           ref.docs.filter(doc => doc.id === id)[0].data()
         );
@@ -55,9 +57,7 @@ const resolvers = {
   Text: {
     async contributors(text) {
       try {
-        const ref = await firestore()
-          .collection("contributors")
-          .get();
+        const ref = await firestore.collection("contributors").get();
         return text.contributors.map(id =>
           ref.docs.filter(doc => doc.id === id)[0].data()
         );
