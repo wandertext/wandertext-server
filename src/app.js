@@ -2,6 +2,9 @@
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
+import fortuneHTTP from "fortune-http";
+import jsonApiSerializer from "fortune-json-api";
+import store from "./store";
 import firestore from "./firestore";
 import apollo from "./graphql";
 
@@ -12,8 +15,12 @@ export default function() {
 
   apollo.applyMiddleware({
     app,
-    path: "/",
+    path: "/graphql",
     bodyParserConfig: { limit: "50mb" }
+  });
+
+  const fortuneListener = fortuneHTTP(store(), {
+    serializers: [[jsonApiSerializer, { keys: ["id"], key: "id" }]]
   });
 
   app.use(bodyParser.json());
@@ -135,6 +142,8 @@ export default function() {
     if (process.env.NODE_ENV === "development") {
       process.stdout.write(`${req.url}\n`);
     }
+
+    fortuneListener(req, res).catch(error => console.log(error));
   });
 
   return app;
