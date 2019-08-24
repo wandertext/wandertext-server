@@ -1,7 +1,5 @@
-import firestore from "../firestore";
-
-export default function(childrenType, parentId, parentType) {
-  return firestore
+export default function(childrenType, parentId, parentType, { db }) {
+  return db
     .collection(childrenType)
     .where(parentType, "==", parentId)
     .get()

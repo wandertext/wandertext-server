@@ -1,7 +1,5 @@
-import firestore from "../firestore";
-
-export default function(collection, id) {
-  return firestore
+export default function(collection, id, { db }) {
+  return db
     .doc(`${collection}/${id}`)
     .get()
     .then(doc => doc.data())

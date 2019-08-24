@@ -20,7 +20,9 @@ const typeDefs = gql`
     createdOn: Timestamp
     modifiedOn: Timestamp
     contributors: [Contributor]
-    entries: [Entry]
+    sortedEntries: [Entry]
+    # sortedEntries will be returned in an SortedEntryFeed wrapper
+    # sortedEntryFeed(cursor: String): SortedEntryFeed
     flags: [Flag]
   }
 
@@ -44,6 +46,11 @@ const typeDefs = gql`
     contributors: [Contributor]
     place: Place
     flags: [Flag]
+  }
+
+  type SortedEntryFeed {
+    cursor: String!
+    sortedEntries: [Entry]!
   }
 
   type Contributor {
@@ -96,6 +103,7 @@ const typeDefs = gql`
     place(id: ID!): Place
     text(id: ID!): Text
     texts: [Text]
+    publicTexts: [Text]
   }
 `;
 
