@@ -32,7 +32,8 @@ const typeDefs = gql`
     help: String
     readOnly: Boolean
     inputLabel: String
-    owner: Contributor
+    # owner is not always an actual contributor
+    owner: String
     nullable: Boolean
   }
 
