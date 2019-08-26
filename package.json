@@ -1,6 +1,6 @@
 {
   "name": "wandertext-server",
-  "version": "0.4.9",
+  "version": "0.5.0",
   "description": "Serve semantically rich geospatial datasets.",
   "repository": "git@github.com:wandertext/wandertext-server.git",
   "author": "Moacir P. de Sá Pereira <moacir.p@columbia.edu> (http://moacir.com)",
@@ -15,6 +15,7 @@
     "start": "node dist/index.js",
     "serve": "nodemon --exec babel-node src/index.js",
     "deploy:server": "yarn build && gcloud app deploy",
+    "release": "standard-version --dry-run",
     "lint": "xo *.js"
   },
   "devDependencies": {
@@ -28,6 +29,7 @@
     "mocha": "^6.2.0",
     "nodemon": "^1.19.1",
     "rimraf": "^3.0.0",
+    "standard-version": "^7.0.0",
     "tslint": "^5.19.0",
     "typescript": "^3.5.3",
     "webpack": "^4.39.2",
