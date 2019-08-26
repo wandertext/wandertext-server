@@ -1,6 +1,6 @@
 {
   "name": "wandertext-server",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "Serve semantically rich geospatial datasets.",
   "repository": "git@github.com:wandertext/wandertext-server.git",
   "author": "Moacir P. de Sá Pereira <moacir.p@columbia.edu> (http://moacir.com)",
