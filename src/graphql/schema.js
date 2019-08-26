@@ -106,6 +106,22 @@ const typeDefs = gql`
     texts: [Text]
     publicTexts: [Text]
   }
+
+  type Mutation {
+    updateEntry(
+      id: ID!
+      attestedName: String
+      properties: JSON
+      contributor: ID!
+    ): updateEntryResponse!
+  }
+
+  type updateEntryResponse {
+    contributor: String
+    success: Boolean!
+    message: String
+    entry: Entry
+  }
 `;
 
 export default typeDefs;
