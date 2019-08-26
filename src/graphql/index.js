@@ -12,7 +12,11 @@ const apollo = new ApolloServer({
   introspection: true,
   context: () => ({
     db: firestore
-  })
+  }),
+  formatError: error => {
+    console.log(error);
+    return error;
+  }
 });
 
 export default apollo;
