@@ -22,7 +22,7 @@ const typeDefs = gql`
     contributors: [Contributor]
     sortedEntries: [Entry]
     # sortedEntries will be returned in an SortedEntryFeed wrapper
-    # sortedEntryFeed(cursor: String): SortedEntryFeed
+    sortedEntryFeed(cursor: String, limit: Int): SortedEntryFeed
     flags: [Flag]
   }
 

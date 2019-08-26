@@ -79,28 +79,36 @@ const resolvers = {
             .then(doc => doc.data())
         )
       );
-    }
-    /*
-    async entryFeed(text, { cursor }, context) {
-      let query = context.db.collection("entries").where("text", "==", text.id);
-      text.entrySort.forEach(field => {
-        if (field.startsWith("-")) {
-          query = query.orderBy(field, "desc");
-        } else {
-          query = query.orderBy(field);
-        }
-      });
-      const entries = await query
-        .get()
-        .then(ref => ref.docs.map(doc => doc.data()))
-        .catch(error => console.log(error));
+    },
+    async sortedEntryFeed(text, { cursor, limit }, context) {
+      const entryIds = text.sortedEntries;
       if (!cursor) {
-        cursor = entries[0].id;
+        cursor = entryIds[0];
       }
 
-      const limit = 10;
+      if (!limit) {
+        limit = 10;
+      }
+
+      const index = entryIds.indexOf(cursor);
+      const newIndex = index + limit;
+      const newEntries = entryIds.slice(index, newIndex);
+      const newCursor = entryIds[newIndex];
+
+      const sortedEntryFeed = {
+        sortedEntries: Promise.all(
+          newEntries.map(id =>
+            context.db
+              .doc(`entries/${id}`)
+              .get()
+              .then(d => d.data())
+          )
+        ),
+        cursor: newCursor
+      };
+
+      return sortedEntryFeed;
     }
-    */
   }
 };
 
