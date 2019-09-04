@@ -78,7 +78,6 @@ const typeDefs = gql`
     longitude: Float
     geonameId: Int
     confidence: Int
-    bbox: String
     createdOn: Timestamp
     modifiedOn: Timestamp
     entries: [Entry]
@@ -101,6 +100,7 @@ const typeDefs = gql`
     contributor(id: ID!): Contributor
     contributors: [Contributor]
     entries: [Entry]
+    places: [Place]
     place(id: ID!): Place
     text(id: ID!): Text
     texts: [Text]
