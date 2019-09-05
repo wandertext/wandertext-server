@@ -15,6 +15,7 @@ const typeDefs = gql`
     imgCredit: String
     imgHref: String
     year: Int
+    entryCount: Int
     entryProperties: [EntryProperty]
     entrySort: [String]
     createdOn: Timestamp

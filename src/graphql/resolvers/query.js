@@ -7,10 +7,19 @@ const Query = {
   entries: (_, __, context) => getAll("entries", context),
   places: (_, __, context) => getAll("places", context),
   place: (_, { id }, context) => getOne("places", id, context),
-  text: (_, { id }, context) => getOne("texts", id, context),
+  text: (_, { id }, { db }) =>
+    db
+      .doc(`texts/${id}`)
+      .get()
+      .then(d => {
+        const data = d.data();
+        data.entryCount = data.sortedEntries.length;
+        return data;
+      })
+      .catch(error => console.log(error)),
   texts: (_, __, context) => getAll("texts", context),
-  publicTexts: (_, __, context) =>
-    context.db
+  publicTexts: (_, __, { db }) =>
+    db
       .collection("texts")
       .where("public", "==", true)
       .get()
