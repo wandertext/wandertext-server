@@ -47,7 +47,7 @@
     "fortune-firestore": "^0.3.0",
     "fortune-http": "^1.2.25",
     "fortune-json-api": "^2.2.0",
-    "graphql": "^14.5.4",
+    "graphql": "^14.5.7",
     "graphql-tag": "^2.10.1",
     "graphql-type-json": "^0.3.0"
   },
