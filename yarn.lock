@@ -960,21 +960,21 @@
   resolved "https://registry.yarnpkg.com/@firebase/webchannel-wrapper/-/webchannel-wrapper-0.2.26.tgz#4fe0e0a878d26af98901b29f051deed8017d6237"
   integrity sha512-VlTurkvs4v7EVFWESBZGOPghFEokQhU5au5CP9WqA8B2/PcQRDsaaQlQCA6VATuEnW+vtSiSBvTiOc4004f8xg==
 
-"@google-cloud/firestore@^2.2.4", "@google-cloud/firestore@^2.2.9":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@google-cloud/firestore/-/firestore-2.3.0.tgz#079854c58fe43362595d5e54afd577bfc0059909"
-  integrity sha512-U5t5QSn+mAx9cw5QiIISDIVzICjxZ2o2+Qs/824I7BU6HkcElgxddgTcACF1z1xl2ZXxmz6NSBWmMr23Uhcilg==
+"@google-cloud/firestore@^2.2.4", "@google-cloud/firestore@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@google-cloud/firestore/-/firestore-2.4.0.tgz#d2f9977cf7e2424eec444f16040d0d07d1ef7268"
+  integrity sha512-F6jXdfQAjfzY5svOJpCZeayQeCAdZ3mjpaDTCfv6YEaxfxxyGODHV8ZEuD6CHnY6jGPEdJz/1EOG3ENJhnWhmw==
   dependencies:
     bun "^0.0.12"
     deep-equal "^1.0.1"
     functional-red-black-tree "^1.0.1"
-    google-gax "^1.1.2"
+    google-gax "^1.6.3"
     through2 "^3.0.0"
 
-"@grpc/grpc-js@^0.5.2":
-  version "0.5.4"
-  resolved "https://registry.yarnpkg.com/@grpc/grpc-js/-/grpc-js-0.5.4.tgz#20ee7880e69805cbc63a1c54a3af02cc6475c850"
-  integrity sha512-aY4fTCz7jq7oKFmfAeZVqGzMCR5I9NLdY9E2fJ70QtGXwlJnTaN6cnbRmCk23/aKPx9UHqOtk2lyjpN6LbAaxw==
+"@grpc/grpc-js@^0.6.4":
+  version "0.6.4"
+  resolved "https://registry.yarnpkg.com/@grpc/grpc-js/-/grpc-js-0.6.4.tgz#02a39d31a41653914a3d520cb0ddfbb4745a2fee"
+  integrity sha512-W0lhteZFCWJnho7oYX3Hcm91/dAcSBnxq7en+Gzfl58SmxNfVSTfEtoqkU2ayCJg3ek6GcwoESFajhxdS722sw==
   dependencies:
     semver "^6.2.0"
 
@@ -4441,12 +4441,12 @@ google-auth-library@^5.0.0:
     jws "^3.1.5"
     lru-cache "^5.0.0"
 
-google-gax@^1.1.2:
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/google-gax/-/google-gax-1.6.1.tgz#9f9cc278bfa4b60005a8658ef4dbb6aa386fa4a3"
-  integrity sha512-5/6uaUA9qAqRKVe2sjvMgsnU/HbfQisQTM5EZ5DfNGOYVBoTsPBdOhR2ZqEWPyqHe7YkdzVHev3FH9W3YWcORw==
+google-gax@^1.6.3:
+  version "1.6.4"
+  resolved "https://registry.yarnpkg.com/google-gax/-/google-gax-1.6.4.tgz#7c5e87bcd8ef4832372b0e9483ecc35fd6b5221a"
+  integrity sha512-fQni9tlywernM6eA4Dje0rw+sUARQne3XLTszDiDQFxevbJBcMu30l0n/lNCDSEbRAJcgIRap51pxHu0htF9+A==
   dependencies:
-    "@grpc/grpc-js" "^0.5.2"
+    "@grpc/grpc-js" "^0.6.4"
     "@grpc/proto-loader" "^0.5.1"
     abort-controller "^3.0.0"
     duplexify "^3.6.0"
