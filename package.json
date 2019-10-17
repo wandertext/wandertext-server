@@ -83,6 +83,6 @@
     "bracketSpacing": true
   },
   "optionalDependencies": {
-    "firebase": "^7.1.0"
+    "firebase": "^7.2.1"
   }
 }
