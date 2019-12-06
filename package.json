@@ -23,7 +23,7 @@
     "@babel/core": "^7.6.3",
     "@babel/node": "^7.5.5",
     "@babel/preset-env": "^7.6.3",
-    "@firebase/testing": "^0.13.4",
+    "@firebase/testing": "^0.16.1",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "mocha": "^6.2.0",
