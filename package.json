@@ -50,7 +50,7 @@
     "fortune": "^5.5.17",
     "fortune-firestore": "^0.3.0",
     "fortune-http": "^1.2.25",
-    "fortune-json-api": "^2.2.0",
+    "fortune-json-api": "^2.2.1",
     "graphql": "^14.5.8",
     "graphql-tag": "^2.10.1",
     "graphql-type-json": "^0.3.0"
