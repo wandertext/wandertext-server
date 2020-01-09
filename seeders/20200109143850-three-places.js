@@ -11,9 +11,9 @@ module.exports = {
           longitude: 78.02,
           name: "آگرہ",
           source: "GeoNames",
-          createdOn: new Date(),
-          updatedOn: new Date(),
-          geonameId: 1279259
+          created_on: new Date(),
+          modified_on: new Date(),
+          geoname_id: 1279259
         },
         {
           id: "belarus",
@@ -21,9 +21,9 @@ module.exports = {
           longitude: 27,
           name: "Belarus",
           source: "GeoNames",
-          createdOn: new Date(),
-          updatedOn: new Date(),
-          geonameId: 630336
+          created_on: new Date(),
+          modified_on: new Date(),
+          geoname_id: 630336
         },
         {
           id: "chile",
@@ -31,9 +31,9 @@ module.exports = {
           longitude: -71,
           name: "Chile",
           source: "GeoNames",
-          createdOn: new Date(),
-          updatedOn: new Date(),
-          geonameId: 3895114
+          created_on: new Date(),
+          modified_on: new Date(),
+          geoname_id: 3895114
         }
       ],
       {}
@@ -43,20 +43,21 @@ module.exports = {
       "SELECT id FROM contributors;"
     );
 
-    const contributorId = contributors[0][0].id;
+    const contributor_id = contributors[0][0].id;
 
-    return queryInterface.bulkInsert("contributorPlaces", [
-      { contributorId, placeId: "agra", createdOn: new Date() },
+    return queryInterface.bulkInsert("contributor_places", [
+      { contributor_id, place_id: "agra", created_on: new Date() },
       {
-        contributorId,
-        placeId: "belarus",
-        createdOn: new Date()
+        contributor_id,
+        place_id: "belarus",
+        created_on: new Date()
       },
-      { contributorId, placeId: "chile", createdOn: new Date() }
+      { contributor_id, place_id: "chile", created_on: new Date() }
     ]);
   },
 
   down: queryInterface => {
     return queryInterface.bulkDelete("places", null, {});
+    return queryInterface.bulkDelete("contributor_places", null, {});
   }
 };

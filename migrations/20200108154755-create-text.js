@@ -14,32 +14,32 @@ module.exports = {
       year: {
         type: Sequelize.INTEGER
       },
-      markdownName: {
+      markdown_name: {
         type: Sequelize.STRING
       },
-      markdownBlurb: {
+      markdown_blurb: {
         type: Sequelize.TEXT
       },
       url: {
         type: Sequelize.STRING
       },
-      imgSrc: {
+      img_src: {
         type: Sequelize.STRING
       },
-      imgCredit: {
+      img_credit: {
         type: Sequelize.STRING
       },
-      imgHref: {
+      img_href: {
         type: Sequelize.STRING
       },
-      entryProperties: {
+      entry_properties: {
         type: Sequelize.JSONB
       },
-      createdOn: {
+      created_on: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedOn: {
+      modified_on: {
         allowNull: false,
         type: Sequelize.DATE
       }

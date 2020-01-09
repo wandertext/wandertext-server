@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.addColumn("entries", "textId", {
+    await queryInterface.addColumn("entries", "text_id", {
       type: Sequelize.STRING,
       references: {
         model: "texts",
@@ -11,7 +11,7 @@ module.exports = {
       onUpdate: "CASCADE",
       onDelete: "SET NULL"
     });
-    await queryInterface.addColumn("entries", "placeId", {
+    await queryInterface.addColumn("entries", "place_id", {
       type: Sequelize.STRING,
       references: {
         model: "places",
@@ -20,7 +20,7 @@ module.exports = {
       onUpdate: "CASCADE",
       onDelete: "SET NULL"
     });
-    await queryInterface.addColumn("flags", "placeId", {
+    await queryInterface.addColumn("flags", "place_id", {
       type: Sequelize.STRING,
       references: {
         model: "places",
@@ -29,7 +29,7 @@ module.exports = {
       onUpdate: "CASCADE",
       onDelete: "SET NULL"
     });
-    await queryInterface.addColumn("flags", "contributorId", {
+    await queryInterface.addColumn("flags", "contributor_id", {
       type: Sequelize.UUID,
       references: {
         model: "contributors",
@@ -38,7 +38,7 @@ module.exports = {
       onUpdate: "CASCADE",
       onDelete: "SET NULL"
     });
-    await queryInterface.addColumn("flags", "entryId", {
+    await queryInterface.addColumn("flags", "entry_id", {
       type: Sequelize.UUID,
       references: {
         model: "entries",
@@ -47,7 +47,7 @@ module.exports = {
       onUpdate: "CASCADE",
       onDelete: "SET NULL"
     });
-    await queryInterface.addColumn("flags", "textId", {
+    await queryInterface.addColumn("flags", "text_id", {
       type: Sequelize.STRING,
       references: {
         model: "texts",
@@ -56,35 +56,35 @@ module.exports = {
       onUpdate: "CASCADE",
       onDelete: "SET NULL"
     });
-    await queryInterface.createTable("contributorEntries", {
-      createdOn: { allowNull: false, type: Sequelize.DATE },
-      ContributorId: {
+    await queryInterface.createTable("contributor_entries", {
+      created_on: { allowNull: false, type: Sequelize.DATE },
+      contributor_id: {
         primaryKey: true,
         type: Sequelize.UUID
       },
-      EntryId: {
+      entry_id: {
         primaryKey: true,
         type: Sequelize.UUID
       }
     });
-    await queryInterface.createTable("contributorTexts", {
-      createdOn: { allowNull: false, type: Sequelize.DATE },
-      ContributorId: {
+    await queryInterface.createTable("contributor_texts", {
+      created_on: { allowNull: false, type: Sequelize.DATE },
+      contributor_id: {
         primaryKey: true,
         type: Sequelize.UUID
       },
-      TextId: {
+      text_id: {
         primaryKey: true,
         type: Sequelize.STRING
       }
     });
-    await queryInterface.createTable("contributorPlaces", {
-      createdOn: { allowNull: false, type: Sequelize.DATE },
-      ContributorId: {
+    await queryInterface.createTable("contributor_places", {
+      created_on: { allowNull: false, type: Sequelize.DATE },
+      contributor_id: {
         primaryKey: true,
         type: Sequelize.UUID
       },
-      PlaceId: {
+      place_id: {
         primaryKey: true,
         type: Sequelize.STRING
       }
@@ -92,14 +92,14 @@ module.exports = {
   },
 
   down: async queryInterface => {
-    await queryInterface.removeColumn("entries", "textId");
-    await queryInterface.removeColumn("entries", "placeId");
-    await queryInterface.removeColumn("flags", "placeId");
-    await queryInterface.removeColumn("flags", "contributorId");
-    await queryInterface.removeColumn("flags", "entryId");
-    await queryInterface.removeColumn("flags", "textId");
-    await queryInterface.dropTable("contributorEntries");
-    await queryInterface.dropTable("contributorTexts");
-    await queryInterface.dropTable("contributorPlaces");
+    await queryInterface.removeColumn("entries", "text_id");
+    await queryInterface.removeColumn("entries", "place_id");
+    await queryInterface.removeColumn("flags", "place_id");
+    await queryInterface.removeColumn("flags", "contributor_id");
+    await queryInterface.removeColumn("flags", "entry_id");
+    await queryInterface.removeColumn("flags", "text_id");
+    await queryInterface.dropTable("contributor_entries");
+    await queryInterface.dropTable("contributor_texts");
+    await queryInterface.dropTable("contributor_places");
   }
 };

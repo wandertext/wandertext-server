@@ -27,17 +27,17 @@ module.exports = {
       point: {
         type: Sequelize.GEOMETRY("POINT", 3857)
       },
-      geonameId: {
+      geoname_id: {
         type: Sequelize.INTEGER
       },
       confidence: {
         type: Sequelize.INTEGER
       },
-      createdOn: {
+      created_on: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedOn: {
+      modified_on: {
         allowNull: false,
         type: Sequelize.DATE
       }

@@ -8,7 +8,7 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4
       },
-      attestedName: {
+      attested_name: {
         allowNull: false,
         type: Sequelize.STRING
       },
@@ -19,11 +19,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.JSONB
       },
-      createdOn: {
+      created_on: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedOn: {
+      modified_on: {
         allowNull: false,
         type: Sequelize.DATE
       }

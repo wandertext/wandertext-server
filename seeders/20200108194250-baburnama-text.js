@@ -9,36 +9,36 @@ module.exports = {
           id: "baburnama-1530",
           name: "baburnama",
           year: 1530,
-          markdownName: "_Bāburnāma_",
-          markdownBlurb: "*Wandertext-dev blurb*",
-          entryProperties: JSON.stringify([
+          markdown_name: "_Bāburnāma_",
+          markdown_blurb: "*Wandertext-dev blurb*",
+          entry_properties: JSON.stringify([
             {
               name: "page",
               type: "number",
               help: "thee page number",
-              inputLabel: "Page"
+              input_label: "Page"
             },
             {
               name: "sequence",
               type: "number",
-              inputLabel: "Seq."
+              input_label: "Seq."
             },
             {
               name: "special",
               help: "something special",
-              inputLabel: "Speciale"
+              input_label: "Speciale"
             },
             {
               name: "tree",
               help: "A Tree",
-              inputLabel: "Treee"
+              input_abel: "Treee"
             }
           ]),
           properties: JSON.stringify({
             translator: "Annette Beveridge"
           }),
-          createdOn: new Date(),
-          updatedOn: new Date()
+          created_on: new Date(),
+          modified_on: new Date()
         }
       ],
       {}
@@ -48,19 +48,19 @@ module.exports = {
       "SELECT id from contributors;"
     );
 
-    const contributorId = contributors[0][0].id;
+    const contributor_id = contributors[0][0].id;
 
-    return queryInterface.bulkInsert("contributorTexts", [
+    return queryInterface.bulkInsert("contributor_texts", [
       {
-        contributorId,
-        textId: "baburnama-1530",
-        createdOn: new Date()
+        contributor_id,
+        text_id: "baburnama-1530",
+        created_on: new Date()
       }
     ]);
   },
 
   down: async queryInterface => {
     await queryInterface.bulkDelete("texts", null, {});
-    await queryInterface.bulkDelete("contributorTexts", null, {});
+    await queryInterface.bulkDelete("contributor_texts", null, {});
   }
 };

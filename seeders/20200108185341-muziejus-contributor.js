@@ -8,9 +8,11 @@ module.exports = {
       [
         {
           id: uuidv4(),
-          firstName: "Moacir",
-          createdOn: new Date(),
-          updatedOn: new Date()
+          first_name: "Moacir",
+          last_name: "bogmore",
+          enabled: true,
+          created_on: new Date(),
+          modified_on: new Date()
         }
       ],
       {}

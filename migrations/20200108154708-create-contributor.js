@@ -8,11 +8,11 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4
       },
-      firstName: {
+      first_name: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      lastName: {
+      last_name: {
         type: Sequelize.STRING
       },
       enabled: {
@@ -30,11 +30,11 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: false
       },
-      createdOn: {
+      created_on: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedOn: {
+      modified_on: {
         allowNull: false,
         type: Sequelize.DATE
       }

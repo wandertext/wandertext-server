@@ -12,11 +12,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.TEXT
       },
-      createdOn: {
+      created_on: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedOn: {
+      modified_on: {
         allowNull: false,
         type: Sequelize.DATE
       }
