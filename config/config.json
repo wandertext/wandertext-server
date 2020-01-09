@@ -1,0 +1,29 @@
+{
+  "development": {
+    "username": "wandertext",
+    "password": "wandertext",
+    "database": "wandertext-dev",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "quoteIdentifiers": false,
+    "operatorsAliases": false
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "wandertext-test",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "quoteIdentifiers": false,
+    "operatorsAliases": false
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "wandertext",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "quoteIdentifiers": false,
+    "operatorsAliases": false
+  }
+}
