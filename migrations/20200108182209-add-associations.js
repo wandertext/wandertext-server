@@ -56,37 +56,85 @@ module.exports = {
       onUpdate: "CASCADE",
       onDelete: "SET NULL"
     });
-    await queryInterface.createTable("contributor_entries", {
-      created_on: { allowNull: false, type: Sequelize.DATE },
+    await queryInterface.createTable("contributors_entries", {
+      created_on: {
+        defaultValue: Sequelize.fn("now"),
+        allowNull: false,
+        type: Sequelize.DATE
+      },
       contributor_id: {
         primaryKey: true,
-        type: Sequelize.UUID
+        type: Sequelize.UUID,
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
+        references: {
+          model: "contributors",
+          key: "id"
+        }
       },
       entry_id: {
         primaryKey: true,
-        type: Sequelize.UUID
+        type: Sequelize.UUID,
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
+        references: {
+          model: "entries",
+          key: "id"
+        }
       }
     });
-    await queryInterface.createTable("contributor_texts", {
-      created_on: { allowNull: false, type: Sequelize.DATE },
+    await queryInterface.createTable("contributors_texts", {
+      created_on: {
+        defaultValue: Sequelize.fn("now"),
+        allowNull: false,
+        type: Sequelize.DATE
+      },
       contributor_id: {
         primaryKey: true,
-        type: Sequelize.UUID
+        type: Sequelize.UUID,
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
+        references: {
+          model: "contributors",
+          key: "id"
+        }
       },
       text_id: {
         primaryKey: true,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
+        references: {
+          model: "texts",
+          key: "id"
+        }
       }
     });
-    await queryInterface.createTable("contributor_places", {
-      created_on: { allowNull: false, type: Sequelize.DATE },
+    await queryInterface.createTable("contributors_places", {
+      created_on: {
+        defaultValue: Sequelize.fn("now"),
+        allowNull: false,
+        type: Sequelize.DATE
+      },
       contributor_id: {
         primaryKey: true,
-        type: Sequelize.UUID
+        type: Sequelize.UUID,
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
+        references: {
+          model: "contributors",
+          key: "id"
+        }
       },
       place_id: {
         primaryKey: true,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
+        references: {
+          model: "places",
+          key: "id"
+        }
       }
     });
   },
@@ -98,8 +146,8 @@ module.exports = {
     await queryInterface.removeColumn("flags", "contributor_id");
     await queryInterface.removeColumn("flags", "entry_id");
     await queryInterface.removeColumn("flags", "text_id");
-    await queryInterface.dropTable("contributor_entries");
-    await queryInterface.dropTable("contributor_texts");
-    await queryInterface.dropTable("contributor_places");
+    await queryInterface.dropTable("contributors_entries");
+    await queryInterface.dropTable("contributors_texts");
+    await queryInterface.dropTable("contributors_places");
   }
 };
