@@ -10,9 +10,7 @@ module.exports = {
           id: uuidv4(),
           first_name: "Moacir",
           last_name: "bogmore",
-          enabled: true,
-          created_on: new Date(),
-          modified_on: new Date()
+          enabled: true
         }
       ],
       {}

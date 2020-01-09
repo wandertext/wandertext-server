@@ -37,8 +37,6 @@ module.exports = {
           properties: JSON.stringify({
             translator: "Annette Beveridge"
           }),
-          created_on: new Date(),
-          modified_on: new Date()
         }
       ],
       {}
@@ -50,17 +48,16 @@ module.exports = {
 
     const contributor_id = contributors[0][0].id;
 
-    return queryInterface.bulkInsert("contributor_texts", [
+    return queryInterface.bulkInsert("contributors_texts", [
       {
         contributor_id,
         text_id: "baburnama-1530",
-        created_on: new Date()
       }
     ]);
   },
 
   down: async queryInterface => {
     await queryInterface.bulkDelete("texts", null, {});
-    await queryInterface.bulkDelete("contributor_texts", null, {});
+    await queryInterface.bulkDelete("contributors_texts", null, {});
   }
 };

@@ -18,8 +18,6 @@ module.exports = {
           text_id,
           attested_name: "Agra",
           place_id: "agra",
-          created_on: new Date(),
-          modified_on: new Date(),
           properties: JSON.stringify({
             page: 3,
             sequence: 2,
@@ -31,8 +29,6 @@ module.exports = {
           text_id,
           attested_name: "Беларусь",
           place_id: "belarus",
-          created_on: new Date(),
-          modified_on: new Date(),
           properties: JSON.stringify({
             page: 1,
             sequence: 3,
@@ -44,8 +40,6 @@ module.exports = {
           text_id,
           attested_name: "Chile",
           place_id: "chile",
-          created_on: new Date(),
-          modified_on: new Date(),
           properties: JSON.stringify({
             page: 2,
             sequence: 1,
@@ -58,12 +52,11 @@ module.exports = {
 
     for (const entry_id of ids) {
       await queryInterface.bulkInsert(
-        "contributor_entries",
+        "contributors_entries",
         [
           {
             contributor_id,
-            entry_id,
-            created_on: new Date()
+            entry_id
           }
         ],
         {}
@@ -73,6 +66,6 @@ module.exports = {
 
   down: async queryInterface => {
     await queryInterface.bulkDelete("entries", null, {});
-    await queryInterface.bulkDelete("contributor_entries", null, {});
+    await queryInterface.bulkDelete("contributors_entries", null, {});
   }
 };
