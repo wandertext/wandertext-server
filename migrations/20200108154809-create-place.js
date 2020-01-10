@@ -24,9 +24,6 @@ module.exports = {
       longitude: {
         type: Sequelize.REAL
       },
-      point: {
-        type: Sequelize.GEOMETRY("POINT", 3857)
-      },
       geoname_id: {
         type: Sequelize.INTEGER
       },
