@@ -2,6 +2,10 @@
 
 module.exports = {
   up: async queryInterface => {
+    const contributors = await queryInterface.sequelize.query(
+      "SELECT id from contributors;"
+    );
+    const contributorId = contributors[0][0].id;
     await queryInterface.bulkInsert(
       "texts",
       [
@@ -9,55 +13,50 @@ module.exports = {
           id: "baburnama-1530",
           name: "baburnama",
           year: 1530,
-          markdown_name: "_Bāburnāma_",
-          markdown_blurb: "*Wandertext-dev blurb*",
-          entry_properties: JSON.stringify([
+          markdownName: "_Bāburnāma_",
+          markdownBlurb: "*Wandertext-dev blurb*",
+          entryProperties: JSON.stringify([
             {
               name: "page",
               type: "number",
               help: "thee page number",
-              input_label: "Page"
+              inputLabel: "Page"
             },
             {
               name: "sequence",
               type: "number",
-              input_label: "Seq."
+              inputLabel: "Seq."
             },
             {
               name: "special",
               help: "something special",
-              input_label: "Speciale"
+              inputLabel: "Speciale"
             },
             {
               name: "tree",
               help: "A Tree",
-              input_abel: "Treee"
+              inputLabel: "Treee"
             }
           ]),
           properties: JSON.stringify({
             translator: "Annette Beveridge"
-          }),
+          })
         }
       ],
       {}
     );
 
-    const contributors = await queryInterface.sequelize.query(
-      "SELECT id from contributors;"
-    );
-
-    const contributor_id = contributors[0][0].id;
-
-    return queryInterface.bulkInsert("contributors_texts", [
+    await queryInterface.bulkInsert("contributor_text", [
       {
-        contributor_id,
-        text_id: "baburnama-1530",
+        contributorId,
+        textId: "baburnama-1530",
+        createdOn: new Date()
       }
     ]);
   },
 
   down: async queryInterface => {
     await queryInterface.bulkDelete("texts", null, {});
-    await queryInterface.bulkDelete("contributors_texts", null, {});
+    await queryInterface.bulkDelete("contributor_text", null, {});
   }
 };

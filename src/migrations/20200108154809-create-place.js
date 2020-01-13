@@ -5,18 +5,18 @@ module.exports = {
       id: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       name: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       note: {
         type: Sequelize.TEXT
       },
       source: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       latitude: {
         type: Sequelize.REAL
@@ -24,21 +24,36 @@ module.exports = {
       longitude: {
         type: Sequelize.REAL
       },
-      geoname_id: {
+      geonameId: {
         type: Sequelize.INTEGER
       },
       confidence: {
         type: Sequelize.INTEGER
       },
-      created_on: {
+      createdOn: {
         allowNull: false,
         defaultValue: Sequelize.fn("now"),
         type: Sequelize.DATE
       },
-      modified_on: {
+      modifiedOn: {
         allowNull: false,
         defaultValue: Sequelize.fn("now"),
         type: Sequelize.DATE
+      },
+      entries: {
+        allowNull: false,
+        defaultValue: "{}",
+        type: Sequelize.TEXT
+      },
+      contributors: {
+        allowNull: false,
+        defaultValue: "{}",
+        type: Sequelize.TEXT
+      },
+      flags: {
+        allowNull: false,
+        defaultValue: "{}",
+        type: Sequelize.TEXT
       }
     });
   },

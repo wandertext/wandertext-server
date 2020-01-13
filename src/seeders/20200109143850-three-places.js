@@ -2,6 +2,10 @@
 
 module.exports = {
   up: async queryInterface => {
+    const contributors = await queryInterface.sequelize.query(
+      "SELECT id FROM contributors;"
+    );
+    const contributorId = contributors[0][0].id;
     await queryInterface.bulkInsert(
       "places",
       [
@@ -11,7 +15,7 @@ module.exports = {
           longitude: 78.02,
           name: "آگرہ",
           source: "GeoNames",
-          geoname_id: 1279259
+          geonameId: 1279259
         },
         {
           id: "belarus",
@@ -19,7 +23,7 @@ module.exports = {
           longitude: 27,
           name: "Belarus",
           source: "GeoNames",
-          geoname_id: 630336
+          geonameId: 630336
         },
         {
           id: "chile",
@@ -27,30 +31,24 @@ module.exports = {
           longitude: -71,
           name: "Chile",
           source: "GeoNames",
-          geoname_id: 3895114
+          geonameId: 3895114
         }
       ],
       {}
     );
-
-    const contributors = await queryInterface.sequelize.query(
-      "SELECT id FROM contributors;"
-    );
-
-    const contributor_id = contributors[0][0].id;
-
-    return queryInterface.bulkInsert("contributors_places", [
-      { contributor_id, place_id: "agra" },
+    await queryInterface.bulkInsert("contributor_place", [
+      { contributorId, placeId: "agra", createdOn: new Date() },
       {
-        contributor_id,
-        place_id: "belarus"
+        contributorId,
+        placeId: "belarus",
+        createdOn: new Date()
       },
-      { contributor_id, place_id: "chile" }
+      { contributorId, placeId: "chile", createdOn: new Date() }
     ]);
   },
 
   down: async queryInterface => {
     await queryInterface.bulkDelete("places", null, {});
-    await queryInterface.bulkDelete("contributors_places", null, {});
+    await queryInterface.bulkDelete("contributor_place", null, {});
   }
 };

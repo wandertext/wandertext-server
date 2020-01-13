@@ -1,19 +1,19 @@
 "use strict";
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable("contributors", {
       id: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.UUID,
+        type: Sequelize.TEXT,
         defaultValue: Sequelize.UUIDV4
       },
-      first_name: {
-        allowNull: false,
-        type: Sequelize.STRING
+      firstName: {
+        type: Sequelize.TEXT
       },
-      last_name: {
-        type: Sequelize.STRING
+      lastName: {
+        type: Sequelize.TEXT
       },
       enabled: {
         allowNull: false,
@@ -30,12 +30,12 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: false
       },
-      created_on: {
+      createdOn: {
         allowNull: false,
         defaultValue: Sequelize.fn("now"),
         type: Sequelize.DATE
       },
-      modified_on: {
+      modifiedOn: {
         allowNull: false,
         defaultValue: Sequelize.fn("now"),
         type: Sequelize.DATE

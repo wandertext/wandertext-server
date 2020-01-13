@@ -5,19 +5,19 @@ module.exports = {
       id: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.UUID,
+        type: Sequelize.TEXT,
         defaultValue: Sequelize.UUIDV4
       },
       comment: {
         allowNull: false,
         type: Sequelize.TEXT
       },
-      created_on: {
+      createdOn: {
         allowNull: false,
         defaultValue: Sequelize.fn("now"),
         type: Sequelize.DATE
       },
-      modified_on: {
+      modifiedOn: {
         allowNull: false,
         defaultValue: Sequelize.fn("now"),
         type: Sequelize.DATE

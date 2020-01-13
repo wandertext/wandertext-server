@@ -8,8 +8,8 @@ module.exports = {
       [
         {
           id: uuidv4(),
-          first_name: "Moacir",
-          last_name: "bogmore",
+          firstName: "Moacir",
+          lastName: "bogmore",
           enabled: true
         }
       ],

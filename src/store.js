@@ -1,15 +1,13 @@
 /* eslint camelcase: 0 unicorn/new-for-builtins: 0 */
 const fortune = require("fortune");
-const FirestoreAdapter = require("fortune-firestore");
+const postgresAdapter = require("fortune-postgres");
 
 export default function() {
   return fortune(
     {
       contributor: {
-        authentication: String,
         firstName: String,
         lastName: String,
-        wandertextId: String,
         enabled: Boolean,
         editor: Boolean,
         admin: Boolean,
@@ -27,12 +25,9 @@ export default function() {
         imgHref: String,
         imgSrc: String,
         imgCredit: String,
-        popupTemplate: String,
         year: Number,
-        public: Boolean,
-        pageByPage: Boolean,
-        entryProperties: Array,
-        entrySort: Array,
+        entryProperties: Object,
+        properties: Object,
         createdOn: Date,
         modifiedOn: Date,
         contributors: [Array("contributor"), "texts"],
@@ -41,6 +36,7 @@ export default function() {
       },
       entry: {
         attestedName: String,
+        note: String,
         properties: Object,
         createdOn: Date,
         modifiedOn: Date,
@@ -51,9 +47,12 @@ export default function() {
       },
       place: {
         name: String,
+        note: String,
+        source: String,
         latitude: Number,
         longitude: Number,
         geonameId: Number,
+        confidence: Number,
         createdOn: Date,
         modifiedOn: Date,
         entries: [Array("entry"), "place"],
@@ -72,7 +71,7 @@ export default function() {
     },
     {
       adapter: [
-        FirestoreAdapter,
+        postgresAdapter,
         {
           typeMap: {
             contributor: "contributors",
@@ -81,14 +80,9 @@ export default function() {
             place: "places",
             text: "texts"
           },
-          projectId: process.env.FIRESTORE_PROJECT_ID,
-          credentials: {
-            client_email: process.env.FIRESTORE_CLIENT_EMAIL,
-            private_key: process.env.FIRESTORE_PRIVATE_KEY
-          }
+          url: "postgres://wandertext:wandertext@localhost:5432/wandertext-dev"
         }
       ]
     }
   );
-};
-
+}

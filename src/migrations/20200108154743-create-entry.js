@@ -5,12 +5,12 @@ module.exports = {
       id: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.UUID,
+        type: Sequelize.TEXT,
         defaultValue: Sequelize.UUIDV4
       },
-      attested_name: {
+      attestedName: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       note: {
         type: Sequelize.TEXT
@@ -19,15 +19,31 @@ module.exports = {
         allowNull: false,
         type: Sequelize.JSONB
       },
-      created_on: {
+      createdOn: {
         allowNull: false,
         defaultValue: Sequelize.fn("now"),
         type: Sequelize.DATE
       },
-      modified_on: {
+      modifiedOn: {
         allowNull: false,
         defaultValue: Sequelize.fn("now"),
         type: Sequelize.DATE
+      },
+      text: {
+        type: Sequelize.TEXT
+      },
+      place: {
+        type: Sequelize.TEXT
+      },
+      contributors: {
+        allowNull: false,
+        defaultValue: "{}",
+        type: Sequelize.TEXT
+      },
+      flags: {
+        allowNull: false,
+        defaultValue: "{}",
+        type: Sequelize.TEXT
       }
     });
   },

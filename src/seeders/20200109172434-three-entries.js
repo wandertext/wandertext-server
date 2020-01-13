@@ -3,11 +3,11 @@ const uuidv4 = require("uuid/v4");
 
 module.exports = {
   up: async queryInterface => {
-    const text_id = "baburnama-1530";
     const contributors = await queryInterface.sequelize.query(
       "SELECT id FROM contributors;"
     );
-    const contributor_id = contributors[0][0].id;
+    const contributorId = contributors[0][0].id;
+    const textId = "baburnama-1530";
     const ids = [uuidv4(), uuidv4(), uuidv4()];
 
     await queryInterface.bulkInsert(
@@ -15,9 +15,10 @@ module.exports = {
       [
         {
           id: ids[0],
-          text_id,
-          attested_name: "Agra",
-          place_id: "agra",
+          attestedName: "Agra",
+          contributors: `{${contributorId}}`,
+          textId,
+          placeId: "agra",
           properties: JSON.stringify({
             page: 3,
             sequence: 2,
@@ -26,9 +27,10 @@ module.exports = {
         },
         {
           id: ids[1],
-          text_id,
-          attested_name: "Беларусь",
-          place_id: "belarus",
+          attestedName: "Беларусь",
+          contributors: `{${contributorId}}`,
+          textId,
+          placeId: "belarus",
           properties: JSON.stringify({
             page: 1,
             sequence: 3,
@@ -37,9 +39,10 @@ module.exports = {
         },
         {
           id: ids[2],
-          text_id,
-          attested_name: "Chile",
-          place_id: "chile",
+          attestedName: "Chile",
+          contributors: `{${contributorId}}`,
+          textId,
+          placeId: "chile",
           properties: JSON.stringify({
             page: 2,
             sequence: 1,
@@ -50,13 +53,14 @@ module.exports = {
       {}
     );
 
-    for (const entry_id of ids) {
+    for (const entryId of ids) {
       await queryInterface.bulkInsert(
-        "contributors_entries",
+        "contributor_entry",
         [
           {
-            contributor_id,
-            entry_id
+            contributorId,
+            entryId,
+            createdOn: new Date()
           }
         ],
         {}
@@ -66,6 +70,6 @@ module.exports = {
 
   down: async queryInterface => {
     await queryInterface.bulkDelete("entries", null, {});
-    await queryInterface.bulkDelete("contributors_entries", null, {});
+    await queryInterface.bulkDelete("contributor_entry", null, {});
   }
 };

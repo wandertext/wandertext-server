@@ -5,42 +5,42 @@ module.exports = {
       id: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       name: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       year: {
         type: Sequelize.INTEGER
       },
-      markdown_name: {
-        type: Sequelize.STRING
+      markdownName: {
+        type: Sequelize.TEXT
       },
-      markdown_blurb: {
+      markdownBlurb: {
         type: Sequelize.TEXT
       },
       url: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
-      img_src: {
-        type: Sequelize.STRING
+      imgSrc: {
+        type: Sequelize.TEXT
       },
-      img_credit: {
-        type: Sequelize.STRING
+      imgCredit: {
+        type: Sequelize.TEXT
       },
-      img_href: {
-        type: Sequelize.STRING
+      imgHref: {
+        type: Sequelize.TEXT
       },
-      entry_properties: {
+      entryProperties: {
         type: Sequelize.JSONB
       },
-      created_on: {
+      createdOn: {
         allowNull: false,
         defaultValue: Sequelize.fn("now"),
         type: Sequelize.DATE
       },
-      modified_on: {
+      modifiedOn: {
         allowNull: false,
         defaultValue: Sequelize.fn("now"),
         type: Sequelize.DATE
