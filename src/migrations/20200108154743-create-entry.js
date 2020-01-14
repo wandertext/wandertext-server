@@ -31,12 +31,6 @@ module.exports = {
         allowNull: false,
         defaultValue: Sequelize.fn("now"),
         type: Sequelize.DATE
-      },
-      text: {
-        type: Sequelize.TEXT
-      },
-      place: {
-        type: Sequelize.TEXT
       }
     });
   },
