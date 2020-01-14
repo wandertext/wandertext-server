@@ -75,6 +75,7 @@ const typeDefs = gql`
     entryCount: Int
     entryProperties: [EntryProperty]
     entrySort: [String]
+    entries: [Entry]
     properties: [Property]
     createdAt: Timestamp
     modifiedAt: Timestamp

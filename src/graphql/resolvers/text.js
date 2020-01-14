@@ -1,16 +1,21 @@
 import { ApolloError } from "apollo-server-express";
 
 const Text = {
-  async contributors(text, _, context) {
+  async contributors(text) {
     try {
-      const ref = await context.db.collection("contributors").get();
-      return text.contributors.map(id =>
-        ref.docs.filter(doc => doc.id === id)[0].data()
-      );
+      return text.getContributors();
     } catch (error) {
       throw new ApolloError(error);
     }
   },
+  async entries(text, _, { db }) {
+    try {
+      return db.Entry.findAll({ where: { text_id: text.id } });
+    } catch (error) {
+      throw new ApolloError(error);
+    }
+  },
+
   sortedEntries(text, _, context) {
     return Promise.all(
       text.sortedEntries.map(entryId =>

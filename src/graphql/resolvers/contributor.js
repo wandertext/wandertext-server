@@ -1,24 +1,16 @@
 import { ApolloError } from "apollo-server-express";
 
 const Contributor = {
-  async entries(contributor, _, context) {
+  async entries(contributor) {
     try {
-      const ref = await context.db
-        .collection("entries")
-        .where("contributors", "array-contains", contributor.id)
-        .get();
-      return ref.docs.map(doc => doc.data());
+      return contributor.getEntries();
     } catch (error) {
       throw new ApolloError(error);
     }
   },
-  async texts(contributor, _, context) {
+  async texts(contributor) {
     try {
-      const ref = await context.db
-        .collection("texts")
-        .where("contributors", "array-contains", contributor.id)
-        .get();
-      return ref.docs.map(doc => doc.data());
+      return contributor.getTexts();
     } catch (error) {
       throw new ApolloError(error);
     }
