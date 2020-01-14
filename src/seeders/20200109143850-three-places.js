@@ -5,7 +5,7 @@ module.exports = {
     const contributors = await queryInterface.sequelize.query(
       "SELECT id FROM contributors;"
     );
-    const contributorId = contributors[0][0].id;
+    const contributor_id = contributors[0][0].id;
     await queryInterface.bulkInsert(
       "places",
       [
@@ -15,7 +15,7 @@ module.exports = {
           longitude: 78.02,
           name: "آگرہ",
           source: "GeoNames",
-          geonameId: 1279259
+          geoname_id: 1279259
         },
         {
           id: "belarus",
@@ -23,7 +23,7 @@ module.exports = {
           longitude: 27,
           name: "Belarus",
           source: "GeoNames",
-          geonameId: 630336
+          geoname_id: 630336
         },
         {
           id: "chile",
@@ -31,19 +31,18 @@ module.exports = {
           longitude: -71,
           name: "Chile",
           source: "GeoNames",
-          geonameId: 3895114
+          geoname_id: 3895114
         }
       ],
       {}
     );
     await queryInterface.bulkInsert("contributor_place", [
-      { contributorId, placeId: "agra", createdOn: new Date() },
+      { contributor_id, place_id: "agra" },
       {
-        contributorId,
-        placeId: "belarus",
-        createdOn: new Date()
+        contributor_id,
+        place_id: "belarus"
       },
-      { contributorId, placeId: "chile", createdOn: new Date() }
+      { contributor_id, place_id: "chile" }
     ]);
   },
 

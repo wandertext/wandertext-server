@@ -6,8 +6,8 @@ module.exports = {
     const contributors = await queryInterface.sequelize.query(
       "SELECT id FROM contributors;"
     );
-    const contributorId = contributors[0][0].id;
-    const textId = "baburnama-1530";
+    const contributor_id = contributors[0][0].id;
+    const text_id = "baburnama-1530";
     const ids = [uuidv4(), uuidv4(), uuidv4()];
 
     await queryInterface.bulkInsert(
@@ -15,10 +15,9 @@ module.exports = {
       [
         {
           id: ids[0],
-          attestedName: "Agra",
-          contributors: `{${contributorId}}`,
-          textId,
-          placeId: "agra",
+          attested_name: "Agra",
+          text_id,
+          place_id: "agra",
           properties: JSON.stringify({
             page: 3,
             sequence: 2,
@@ -27,10 +26,9 @@ module.exports = {
         },
         {
           id: ids[1],
-          attestedName: "Беларусь",
-          contributors: `{${contributorId}}`,
-          textId,
-          placeId: "belarus",
+          attested_name: "Беларусь",
+          text_id,
+          place_id: "belarus",
           properties: JSON.stringify({
             page: 1,
             sequence: 3,
@@ -39,10 +37,9 @@ module.exports = {
         },
         {
           id: ids[2],
-          attestedName: "Chile",
-          contributors: `{${contributorId}}`,
-          textId,
-          placeId: "chile",
+          attested_name: "Chile",
+          text_id,
+          place_id: "chile",
           properties: JSON.stringify({
             page: 2,
             sequence: 1,
@@ -53,14 +50,13 @@ module.exports = {
       {}
     );
 
-    for (const entryId of ids) {
+    for (const entry_id of ids) {
       await queryInterface.bulkInsert(
         "contributor_entry",
         [
           {
-            contributorId,
-            entryId,
-            createdOn: new Date()
+            contributor_id,
+            entry_id
           }
         ],
         {}

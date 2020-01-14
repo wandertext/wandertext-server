@@ -9,6 +9,7 @@ module.exports = {
         defaultValue: Sequelize.UUIDV4
       },
       attestedName: {
+        field: "attested_name",
         allowNull: false,
         type: Sequelize.TEXT
       },
@@ -19,12 +20,14 @@ module.exports = {
         allowNull: false,
         type: Sequelize.JSONB
       },
-      createdOn: {
+      createdAt: {
+        field: "created_at",
         allowNull: false,
         defaultValue: Sequelize.fn("now"),
         type: Sequelize.DATE
       },
-      modifiedOn: {
+      modifiedAt: {
+        field: "modified_at",
         allowNull: false,
         defaultValue: Sequelize.fn("now"),
         type: Sequelize.DATE
@@ -33,16 +36,6 @@ module.exports = {
         type: Sequelize.TEXT
       },
       place: {
-        type: Sequelize.TEXT
-      },
-      contributors: {
-        allowNull: false,
-        defaultValue: "{}",
-        type: Sequelize.TEXT
-      },
-      flags: {
-        allowNull: false,
-        defaultValue: "{}",
         type: Sequelize.TEXT
       }
     });

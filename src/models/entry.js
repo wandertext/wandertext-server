@@ -12,6 +12,7 @@ export default function(sequelize, type) {
         defaultValue: type.UUIDV4
       },
       attestedName: {
+        field: "attested_name",
         allowNull: false,
         type: type.TEXT
       },
@@ -22,12 +23,14 @@ export default function(sequelize, type) {
         allowNull: false,
         type: type.JSONB
       },
-      createdOn: {
+      createdAt: {
+        field: "created_at",
         allowNull: false,
         defaultValue: type.fn("now"),
         type: type.DATE
       },
-      modifiedOn: {
+      modifiedAt: {
+        field: "modified_at",
         allowNull: false,
         defaultValue: type.fn("now"),
         type: type.DATE

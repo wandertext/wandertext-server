@@ -18,32 +18,40 @@ export default function(sequelize, type) {
         type: type.INTEGER
       },
       markdownName: {
+        field: "markdown_name",
         type: type.TEXT
       },
       markdownBlurb: {
+        field: "markdown_blurb",
         type: type.TEXT
       },
       url: {
         type: type.TEXT
       },
       imgSrc: {
+        field: "img_src",
         type: type.TEXT
       },
       imgCredit: {
+        field: "img_credit",
         type: type.TEXT
       },
       imgHref: {
+        field: "img_href",
         type: type.TEXT
       },
       entryProperties: {
+        field: "entry_properties",
         type: type.JSONB
       },
-      createdOn: {
+      createdAt: {
+        field: "created_at",
         allowNull: false,
         defaultValue: type.fn("now"),
         type: type.DATE
       },
-      modifiedOn: {
+      modifiedAt: {
+        field: "modified_at",
         allowNull: false,
         defaultValue: type.fn("now"),
         type: type.DATE

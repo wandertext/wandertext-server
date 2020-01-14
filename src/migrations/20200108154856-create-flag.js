@@ -12,12 +12,14 @@ module.exports = {
         allowNull: false,
         type: Sequelize.TEXT
       },
-      createdOn: {
+      createdAt: {
+        field: "created_at",
         allowNull: false,
         defaultValue: Sequelize.fn("now"),
         type: Sequelize.DATE
       },
-      modifiedOn: {
+      modifiedAt: {
+        field: "modified_at",
         allowNull: false,
         defaultValue: Sequelize.fn("now"),
         type: Sequelize.DATE

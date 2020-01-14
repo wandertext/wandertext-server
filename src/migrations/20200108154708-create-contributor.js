@@ -10,9 +10,11 @@ module.exports = {
         defaultValue: Sequelize.UUIDV4
       },
       firstName: {
+        field: "first_name",
         type: Sequelize.TEXT
       },
       lastName: {
+        field: "last_name",
         type: Sequelize.TEXT
       },
       enabled: {
@@ -30,12 +32,14 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: false
       },
-      createdOn: {
+      createdAt: {
+        field: "created_at",
         allowNull: false,
         defaultValue: Sequelize.fn("now"),
         type: Sequelize.DATE
       },
-      modifiedOn: {
+      modifiedAt: {
+        field: "modified_at",
         allowNull: false,
         defaultValue: Sequelize.fn("now"),
         type: Sequelize.DATE

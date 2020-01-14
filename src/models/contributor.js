@@ -12,10 +12,12 @@ export default function(sequelize, type) {
         defaultValue: type.UUIDV4
       },
       firstName: {
+        field: "first_name",
         type: type.TEXT,
         allowNull: false
       },
       lastName: {
+        field: "last_name",
         type: type.TEXT
       },
       enabled: {
@@ -33,12 +35,14 @@ export default function(sequelize, type) {
         type: type.BOOLEAN,
         defaultValue: false
       },
-      createdOn: {
+      createdAt: {
+        field: "created_at",
         allowNull: false,
         defaultValue: type.fn("now"),
         type: type.DATE
       },
-      modifiedOn: {
+      modifiedAt: {
+        field: "modified_at",
         allowNull: false,
         defaultValue: type.fn("now"),
         type: type.DATE

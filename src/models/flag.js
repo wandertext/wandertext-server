@@ -15,12 +15,14 @@ export default function(sequelize, type) {
         allowNull: false,
         type: type.TEXT
       },
-      createdOn: {
+      createdAt: {
+        field: "created_at",
         allowNull: false,
         defaultValue: type.fn("now"),
         type: type.DATE
       },
-      modifiedOn: {
+      modifiedAt: {
+        field: "modified_at",
         allowNull: false,
         defaultValue: type.fn("now"),
         type: type.DATE

@@ -11,12 +11,13 @@ export default function(sequelize, type) {
         type: type.TEXT,
         defaultValue: type.UUIDV4
       },
-      createdOn: {
+      createdAt: {
+        field: "created_at",
         allowNull: false,
         defaultValue: type.fn("now"),
         type: type.DATE
       }
     },
-    { sequelize, timestamps: false, modelName: "contributor_entry" }
+    { sequelize, timestamps: false, modelName: "contributor_entry", tableName: "contributor_entry" }
   );
 }

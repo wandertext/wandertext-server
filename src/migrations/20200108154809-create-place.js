@@ -25,35 +25,23 @@ module.exports = {
         type: Sequelize.REAL
       },
       geonameId: {
+        field: "geoname_id",
         type: Sequelize.INTEGER
       },
       confidence: {
         type: Sequelize.INTEGER
       },
-      createdOn: {
+      createdAt: {
+        field: "created_at",
         allowNull: false,
         defaultValue: Sequelize.fn("now"),
         type: Sequelize.DATE
       },
-      modifiedOn: {
+      modifiedAt: {
+        field: "modified_at",
         allowNull: false,
         defaultValue: Sequelize.fn("now"),
         type: Sequelize.DATE
-      },
-      entries: {
-        allowNull: false,
-        defaultValue: "{}",
-        type: Sequelize.TEXT
-      },
-      contributors: {
-        allowNull: false,
-        defaultValue: "{}",
-        type: Sequelize.TEXT
-      },
-      flags: {
-        allowNull: false,
-        defaultValue: "{}",
-        type: Sequelize.TEXT
       }
     });
   },

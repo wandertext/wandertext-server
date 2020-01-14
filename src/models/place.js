@@ -28,17 +28,20 @@ export default function(sequelize, type) {
         type: type.REAL
       },
       geonameId: {
+        field: "geoname_id",
         type: type.INTEGER
       },
       confidence: {
         type: type.INTEGER
       },
-      createdOn: {
+      createdAt: {
+        field: "created_at",
         allowNull: false,
         defaultValue: type.fn("now"),
         type: type.DATE
       },
-      modifiedOn: {
+      modifiedAt: {
+        field: "modified_at",
         allowNull: false,
         defaultValue: type.fn("now"),
         type: type.DATE
