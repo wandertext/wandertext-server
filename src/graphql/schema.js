@@ -4,26 +4,31 @@ const typeDefs = gql`
   scalar JSON
   scalar Timestamp
 
-  type Text {
+  type Contributor {
     id: ID!
-    name: String!
-    popupTemplate: String
-    markdownName: String
-    markdownBlurb: String
-    url: String
-    imgSrc: String
-    imgCredit: String
-    imgHref: String
-    year: Int
-    entryCount: Int
-    entryProperties: [EntryProperty]
-    entrySort: [String]
-    createdOn: Timestamp
-    modifiedOn: Timestamp
+    authentication: String
+    firstName: String
+    lastName: String
+    enabled: Boolean
+    editor: Boolean
+    admin: Boolean
+    createdAt: Timestamp
+    modifiedAt: Timestamp
+    entries: [Entry]
+    texts: [Text]
+    flags: [Flag]
+  }
+
+  type Entry {
+    id: ID!
+    properties: [Property]
+    attestedName: String
+    note: String
+    createdAt: Timestamp
+    modifiedAt: Timestamp
     contributors: [Contributor]
-    sortedEntries: [Entry]
-    # sortedEntries will be returned in an SortedEntryFeed wrapper
-    sortedEntryFeed(cursor: String, limit: Int): SortedEntryFeed
+    text: Text
+    place: Place
     flags: [Flag]
   }
 
@@ -38,36 +43,51 @@ const typeDefs = gql`
     nullable: Boolean
   }
 
-  type Entry {
+  type Flag {
     id: ID!
-    properties: JSON
-    attestedName: String
-    note: String
-    createdOn: Timestamp
-    modifiedOn: Timestamp
-    contributors: [Contributor]
+    comment: String!
+    createdAt: Timestamp
+    modifiedAt: Timestamp
+    entry: Entry
     place: Place
+    text: Text
+    contributor: Contributor
+  }
+
+  type Property {
+    name: String
+    # Assume string
+    value: String
+  }
+
+
+  type Text {
+    id: ID!
+    name: String!
+    popupTemplate: String
+    markdownName: String
+    markdownBlurb: String
+    url: String
+    imgSrc: String
+    imgCredit: String
+    imgHref: String
+    year: Int
+    entryCount: Int
+    entryProperties: [EntryProperty]
+    entrySort: [String]
+    properties: [Property]
+    createdAt: Timestamp
+    modifiedAt: Timestamp
+    contributors: [Contributor]
+    sortedEntries: [Entry]
+    # sortedEntries will be returned in an SortedEntryFeed wrapper
+    sortedEntryFeed(cursor: String, limit: Int): SortedEntryFeed
     flags: [Flag]
   }
 
   type SortedEntryFeed {
     cursor: String!
     sortedEntries: [Entry]!
-  }
-
-  type Contributor {
-    id: ID!
-    authentication: String
-    firstName: String
-    lastName: String
-    enabled: Boolean
-    editor: Boolean
-    admin: Boolean
-    createdOn: Timestamp
-    modifiedOn: Timestamp
-    entries: [Entry]
-    texts: [Text]
-    flags: [Flag]
   }
 
   type Place {
@@ -79,32 +99,21 @@ const typeDefs = gql`
     longitude: Float
     geonameId: Int
     confidence: Int
-    createdOn: Timestamp
-    modifiedOn: Timestamp
+    createdAt: Timestamp
+    modifiedAt: Timestamp
     entries: [Entry]
     contributors: [Contributor]
     flags: [Flag]
   }
 
-  type Flag {
-    id: ID!
-    comment: String!
-    createdOn: Timestamp
-    modifiedOn: Timestamp
-    entry: Entry
-    place: Place
-    text: Text
-    contributor: Contributor
-  }
-
   type Query {
     contributor(id: ID!): Contributor
-    contributors: [Contributor]
+    contributors: [Contributor]!
     entries: [Entry]
     places: [Place]
     place(id: ID!): Place
     text(id: ID!): Text
-    texts: [Text]
+    texts: [Text]!
     publicTexts: [Text]
   }
 

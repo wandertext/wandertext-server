@@ -1,7 +1,6 @@
 export default function(collection, { db }) {
-  return db
-    .collection(collection)
-    .get()
-    .then(ref => ref.docs.map(doc => doc.data()))
+  return db[collection]
+    .findAll()
+    .then(objects => objects)
     .catch(error => console.log(error));
 }

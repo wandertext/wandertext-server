@@ -2,10 +2,19 @@
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-import { Contributor, Place, Text, Flag, Entry } from "./models";
+import apollo from "./graphql";
+import models from "./models";
 
 export default function() {
   const app = express();
+
+  const { Contributor, Place, Text, Flag, Entry } = models();
+
+  apollo.applyMiddleware({
+    app,
+    path: "/graphql",
+    bodyParserConfig: { limit: "50mb" }
+  });
 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
