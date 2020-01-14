@@ -35,21 +35,31 @@ export default function models() {
   const ContributorPlace = contributorPlaceModel(sequelize, Sequelize);
 
   Contributor.belongsToMany(Text, { through: ContributorText, unique: false });
-  Contributor.belongsToMany(Place, { through: ContributorPlace, unique: false });
-  Contributor.belongsToMany(Entry, { through: ContributorEntry, unique: false });
-  Entry.belongsTo(Text);
-  Entry.belongsTo(Place);
-  Entry.belongsToMany(Contributor, { through: ContributorEntry, unique: false });
-  Text.belongsToMany(Contributor, { through: ContributorText, unique: false });
-  Place.belongsToMany(Contributor, { through: ContributorPlace, unique: false });
-  Flag.belongsTo(Contributor);
-  Flag.belongsTo(Place);
-  Flag.belongsTo(Entry);
-  Flag.belongsTo(Text);
-
-  sequelize.sync().then(() => {
-    console.log(`Database & tables created!`);
+  Contributor.belongsToMany(Place, {
+    through: ContributorPlace,
+    unique: false
   });
+  Contributor.belongsToMany(Entry, {
+    through: ContributorEntry,
+    unique: false
+  });
+  Entry.belongsTo(Text, { foreignKey: "text_id" });
+  Entry.belongsTo(Place, { foreignKey: "place_id" });
+  Entry.belongsToMany(Contributor, {
+    through: ContributorEntry,
+    unique: false
+  });
+  Text.belongsToMany(Contributor, { through: ContributorText, unique: false });
+  Place.belongsToMany(Contributor, {
+    through: ContributorPlace,
+    unique: false
+  });
+  Flag.belongsTo(Contributor, { foreignKey: "contributor_id" });
+  Flag.belongsTo(Place, { foreignKey: "place_id" });
+  Flag.belongsTo(Entry, { foreignKey: "entry_id" });
+  Flag.belongsTo(Text, { foreignKey: "text_id" });
+
+  sequelize.sync().then(() => console.log("db synced"));
 
   return {
     Entry,

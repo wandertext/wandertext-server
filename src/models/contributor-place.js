@@ -5,11 +5,21 @@ class ContributorPlace extends Model {}
 export default function(sequelize, type) {
   return ContributorPlace.init(
     {
-      id: {
-        allowNull: false,
-        primaryKey: true,
+      contributorId: {
+        field: "contributor_id",
         type: type.TEXT,
-        defaultValue: type.UUIDV4
+        references: {
+          model: "contributors",
+          key: "id"
+        }
+      },
+      placeId: {
+        field: "place_id",
+        type: type.TEXT,
+        references: {
+          model: "places",
+          key: "id"
+        }
       },
       createdAt: {
         field: "created_at",

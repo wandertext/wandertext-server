@@ -5,11 +5,21 @@ class ContributorEntry extends Model {}
 export default function(sequelize, type) {
   return ContributorEntry.init(
     {
-      id: {
-        allowNull: false,
-        primaryKey: true,
+      contributorId: {
+        field: "contributor_id",
         type: type.TEXT,
-        defaultValue: type.UUIDV4
+        references: {
+          model: "contributors",
+          key: "id"
+        }
+      },
+      entryId: {
+        field: "entry_id",
+        type: type.TEXT,
+        references: {
+          model: "entries",
+          key: "id"
+        }
       },
       createdAt: {
         field: "created_at",
