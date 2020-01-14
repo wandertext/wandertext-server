@@ -40,6 +40,10 @@ export default function(sequelize, type) {
         field: "img_href",
         type: type.TEXT
       },
+      entrySort: {
+        field: "entry_sort",
+        type: type.ARRAY(type.TEXT)
+      },
       entryProperties: {
         field: "entry_properties",
         type: type.JSONB

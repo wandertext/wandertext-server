@@ -15,6 +15,7 @@ module.exports = {
           year: 1530,
           markdown_name: "_Bāburnāma_",
           markdown_blurb: "*Wandertext-dev blurb*",
+          entry_sort: ["page", "sequence"],
           entry_properties: JSON.stringify([
             {
               name: "page",
