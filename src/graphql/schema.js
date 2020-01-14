@@ -21,7 +21,7 @@ const typeDefs = gql`
 
   type Entry {
     id: ID!
-    properties: [Property]
+    properties: JSON
     attestedName: String
     note: String
     createdAt: Timestamp
@@ -54,13 +54,6 @@ const typeDefs = gql`
     contributor: Contributor
   }
 
-  type Property {
-    name: String
-    # Assume string
-    value: String
-  }
-
-
   type Text {
     id: ID!
     name: String!
@@ -76,7 +69,7 @@ const typeDefs = gql`
     entryProperties: [EntryProperty]
     entrySort: [String]
     entries: [Entry]
-    properties: [Property]
+    properties: JSON
     createdAt: Timestamp
     modifiedAt: Timestamp
     contributors: [Contributor]
