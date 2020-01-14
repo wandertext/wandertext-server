@@ -4320,10 +4320,10 @@ fortune-http@^1.2.25:
     negotiator "^0.6.2"
     simulacra "^2.2.0"
 
-fortune-json-api@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/fortune-json-api/-/fortune-json-api-2.2.1.tgz#ecb9dd130768d777d7249a6b6c3df64eb66e6c09"
-  integrity sha512-u6ovaqe8IZzs5egqT8AoixB0HXfsi/2daIVzbGo5jqZ+HEGYryHTbS/IeQmmWNKKzJp7wM+cJxZ7EsYFYkX86A==
+fortune-json-api@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/fortune-json-api/-/fortune-json-api-2.2.2.tgz#95adc1d101644e9a2cde5064ed517bc253f1a265"
+  integrity sha512-iKJOe7r6i3V27Ci3KNsHVEx6h4vq1iBCPecEHMRP4EkJPOMh8rdC9a/gcl6wkHqE4vNfXOEaom+W8F7quEmylA==
   dependencies:
     deep-equal "^2.0.1"
     inflection "^1.12.0"
