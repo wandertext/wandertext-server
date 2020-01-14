@@ -1,3 +1,4 @@
+/* eslint camelcase: 0 */
 import { ApolloError } from "apollo-server-express";
 
 const Text = {
@@ -16,18 +17,26 @@ const Text = {
     }
   },
 
-  sortedEntries(text, _, context) {
-    return Promise.all(
-      text.sortedEntries.map(entryId =>
-        context.db
-          .doc(`entries/${entryId}`)
-          .get()
-          .then(doc => doc.data())
-      )
-    );
+  async sortedEntries(text, _, { db }) {
+    try {
+      let order = [];
+      if (text.entrySort) {
+        order = text.entrySort.map(key => [`properties.${key}`, "ASC"]);
+      } else {
+        order = [
+          ["properties.page", "ASC"],
+          ["properties.sequence", "ASC"]
+        ];
+      }
+
+      return db.Entry.findAll({ where: { text_id: text.id }, order });
+    } catch (error) {
+      throw new ApolloError(error);
+    }
   },
+
   async sortedEntryFeed(text, { cursor, limit }, context) {
-    const entryIds = text.sortedEntries;
+    const entryIds = await text.sortedEntries;
     if (!cursor) {
       cursor = entryIds[0];
     }
