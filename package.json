@@ -23,7 +23,7 @@
     "@babel/core": "^7.7.7",
     "@babel/node": "^7.5.5",
     "@babel/preset-env": "^7.6.3",
-    "@firebase/testing": "^0.16.4",
+    "@firebase/testing": "^0.16.5",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "fortune-postgres": "^1.6.10",
