@@ -35,8 +35,29 @@ const Text = {
     }
   },
 
-  async sortedEntryFeed(text, { cursor, limit }, context) {
-    const entryIds = await text.sortedEntries;
+  async sortedEntryFeed(text, { cursor, limit }, { db }) {
+    let sortedEntries;
+    let entryIds;
+    try {
+      let order = [];
+      if (text.entrySort) {
+        order = text.entrySort.map(key => [`properties.${key}`, "ASC"]);
+      } else {
+        order = [
+          ["properties.page", "ASC"],
+          ["properties.sequence", "ASC"]
+        ];
+      }
+
+      sortedEntries = await db.Entry.findAll({
+        where: { text_id: text.id },
+        order
+      });
+      entryIds = sortedEntries.map(e => e.id);
+    } catch (error) {
+      throw new ApolloError(error);
+    }
+
     if (!cursor) {
       cursor = entryIds[0];
     }
@@ -46,19 +67,21 @@ const Text = {
     }
 
     const index = entryIds.indexOf(cursor);
-    const newIndex = index + limit;
-    const newEntries = entryIds.slice(index, newIndex);
+    // Note that I've replaced limit with 1.
+    const newIndex = index + 1;
+    const newEntries = sortedEntries.slice(index, newIndex);
     const newCursor = entryIds[newIndex];
 
     const sortedEntryFeed = {
-      sortedEntries: Promise.all(
-        newEntries.map(id =>
-          context.db
-            .doc(`entries/${id}`)
-            .get()
-            .then(d => d.data())
-        )
-      ),
+      sortedEntries: newEntries,
+      // sortedEntries: Promise.all(
+      //   newEntries.map(id =>
+      //     context.db
+      //       .doc(`entries/${id}`)
+      //       .get()
+      //       .then(d => d.data())
+      //   )
+      // ),
       cursor: newCursor
     };
 
