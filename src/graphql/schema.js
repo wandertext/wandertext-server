@@ -111,17 +111,12 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    updateEntry(
-      id: ID!
-      attestedName: String
-      properties: JSON
-      contributor: ID!
-    ): updateEntryResponse!
+    editEntry(entryJSON: JSON!, contributorId: ID!): entryResponse!
   }
 
-  type updateEntryResponse {
-    contributor: String
+  type entryResponse {
     success: Boolean!
+    newEntry: Boolean!
     message: String
     entry: Entry
   }

@@ -1,30 +1,36 @@
+/* eslint camelcase:0 */
 import { ApolloError } from "apollo-server-express";
 
 const Mutation = {
-  async updateEntry(_, { contributor, id, attestedName, properties }, { db }) {
+  async editEntry(_, { entryJSON, contributorId }, { db }) {
+    const values = JSON.parse(entryJSON);
+    values.modifiedAt = new Date();
     try {
-      const update = { contributor };
-      if (properties) {
-        update.properties = properties;
-      }
-
-      if (attestedName) {
-        update.attestedName = attestedName;
-      }
-
-      await db.doc(`entries/${id}`).update(update);
-      const entry = await db
-        .doc(`entries/${id}`)
-        .get()
-        .then(d => d.data());
+      let message;
+      const [returnedEntry, newEntry] = await db.Entry.upsert(values, {
+        returning: true,
+        logging(log) {
+          message = log;
+        }
+      });
+      const entry = returnedEntry.toJSON();
+      await db.ContributorEntry.findOrCreate({
+        where: {
+          contributorId,
+          entryId: entry.id
+        }
+      });
       return {
         entry,
-        contributor,
+        newEntry,
         success: true,
-        message: `Update of entry ${id} succeeded`
+        message
       };
     } catch (error) {
-      throw new ApolloError(error);
+      return {
+        success: false,
+        message: new ApolloError(error)
+      };
     }
   }
 };

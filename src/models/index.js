@@ -67,6 +67,9 @@ export default function models() {
     Entry,
     Place,
     Contributor,
+    ContributorEntry,
+    ContributorPlace,
+    ContributorText,
     Flag,
     Text
   };

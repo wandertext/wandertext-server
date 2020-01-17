@@ -34,7 +34,15 @@ export default function(sequelize, type) {
         allowNull: false,
         defaultValue: type.fn("now"),
         type: type.DATE
-      }
+      },
+      textId: {
+        field: "text_id",
+        type: type.TEXT
+      },
+      placeId: {
+        field: "place_id",
+        type: type.TEXT
+      },
     },
     { sequelize, timestamps: false, modelName: "entry" }
   );
