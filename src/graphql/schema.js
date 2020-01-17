@@ -73,8 +73,7 @@ const typeDefs = gql`
     createdAt: Timestamp
     modifiedAt: Timestamp
     contributors: [Contributor]
-    sortedEntries: [Entry]
-    # sortedEntries will be returned in an SortedEntryFeed wrapper
+    sortedEntries: [String]
     sortedEntryFeed(cursor: String, limit: Int): SortedEntryFeed
     flags: [Flag]
   }

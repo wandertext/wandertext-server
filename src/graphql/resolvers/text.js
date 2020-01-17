@@ -17,45 +17,16 @@ const Text = {
     }
   },
 
-  async sortedEntries(text, _, { db }) {
-    try {
-      let order = [];
-      if (text.entrySort) {
-        order = text.entrySort.map(key => [`properties.${key}`, "ASC"]);
-      } else {
-        order = [
-          ["properties.page", "ASC"],
-          ["properties.sequence", "ASC"]
-        ];
-      }
-
-      return db.Entry.findAll({ where: { text_id: text.id }, order });
-    } catch (error) {
-      throw new ApolloError(error);
-    }
-  },
-
   async sortedEntryFeed(text, { cursor, limit }, { db }) {
-    let sortedEntries;
-    let entryIds;
-    try {
-      let order = [];
-      if (text.entrySort) {
-        order = text.entrySort.map(key => [`properties.${key}`, "ASC"]);
-      } else {
-        order = [
-          ["properties.page", "ASC"],
-          ["properties.sequence", "ASC"]
-        ];
-      }
-
-      sortedEntries = await db.Entry.findAll({
-        where: { text_id: text.id },
-        order
-      });
-      entryIds = sortedEntries.map(e => e.id);
-    } catch (error) {
-      throw new ApolloError(error);
+    const entryIds = text.sortedEntries;
+    let order = [];
+    if (text.entrySort) {
+      order = text.entrySort.map(key => [`properties.${key}`, "ASC"]);
+    } else {
+      order = [
+        ["properties.page", "ASC"],
+        ["properties.sequence", "ASC"]
+      ];
     }
 
     if (!cursor) {
@@ -67,21 +38,18 @@ const Text = {
     }
 
     const index = entryIds.indexOf(cursor);
-    // Note that I've replaced limit with 1.
-    const newIndex = index + 1;
-    const newEntries = sortedEntries.slice(index, newIndex);
+    const newIndex = index + limit;
+    const entryIdsArray = entryIds.slice(index, newIndex);
     const newCursor = entryIds[newIndex];
+    const newEntries = await db.Entry.findAll({
+      where: {
+        id: entryIdsArray
+      },
+      order
+    });
 
     const sortedEntryFeed = {
       sortedEntries: newEntries,
-      // sortedEntries: Promise.all(
-      //   newEntries.map(id =>
-      //     context.db
-      //       .doc(`entries/${id}`)
-      //       .get()
-      //       .then(d => d.data())
-      //   )
-      // ),
       cursor: newCursor
     };
 
