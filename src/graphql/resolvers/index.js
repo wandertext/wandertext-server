@@ -1,13 +1,13 @@
 import GraphQLJSON from "graphql-type-json";
-import GraphQLTimestamp from "../timestamp";
+import { GraphQLDateTime } from "graphql-iso-date";
 import Query from "./query";
 import Contributor from "./contributor";
 import Text from "./text";
 import Mutation from "./mutation";
 
 const resolvers = {
-  Timestamp: GraphQLTimestamp,
   JSON: GraphQLJSON,
+  DateTime: GraphQLDateTime,
   Query,
   Contributor,
   Text,

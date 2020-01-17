@@ -2,7 +2,7 @@ import { gql } from "apollo-server-express";
 
 const typeDefs = gql`
   scalar JSON
-  scalar Timestamp
+  scalar DateTime
 
   type Contributor {
     id: ID!
@@ -12,8 +12,8 @@ const typeDefs = gql`
     enabled: Boolean
     editor: Boolean
     admin: Boolean
-    createdAt: Timestamp
-    modifiedAt: Timestamp
+    createdAt: DateTime
+    modifiedAt: DateTime
     entries: [Entry]
     texts: [Text]
     flags: [Flag]
@@ -24,8 +24,8 @@ const typeDefs = gql`
     properties: JSON
     attestedName: String
     note: String
-    createdAt: Timestamp
-    modifiedAt: Timestamp
+    createdAt: DateTime
+    modifiedAt: DateTime
     contributors: [Contributor]
     text: Text
     place: Place
@@ -46,8 +46,8 @@ const typeDefs = gql`
   type Flag {
     id: ID!
     comment: String!
-    createdAt: Timestamp
-    modifiedAt: Timestamp
+    createdAt: DateTime
+    modifiedAt: DateTime
     entry: Entry
     place: Place
     text: Text
@@ -70,8 +70,8 @@ const typeDefs = gql`
     entrySort: [String]
     entries: [Entry]
     properties: JSON
-    createdAt: Timestamp
-    modifiedAt: Timestamp
+    createdAt: DateTime
+    modifiedAt: DateTime
     contributors: [Contributor]
     sortedEntries: [String]
     sortedEntryFeed(cursor: String, limit: Int): SortedEntryFeed
@@ -92,8 +92,8 @@ const typeDefs = gql`
     longitude: Float
     geonameId: Int
     confidence: Int
-    createdAt: Timestamp
-    modifiedAt: Timestamp
+    createdAt: DateTime
+    modifiedAt: DateTime
     entries: [Entry]
     contributors: [Contributor]
     flags: [Flag]
