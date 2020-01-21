@@ -18,7 +18,7 @@ const Text = {
   },
 
   async sortedEntryFeed(text, { cursor, limit }, { db }) {
-    const entryIds = text.sortedEntries;
+    const entryIds = text.sortedEntryIds;
     let order = [];
     if (text.entrySort) {
       order = text.entrySort.map(key => [`properties.${key}`, "ASC"]);

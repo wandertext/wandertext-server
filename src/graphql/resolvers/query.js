@@ -15,7 +15,7 @@ const Query = {
   //     .get()
   //     .then(d => {
   //       const data = d.data();
-  //       data.entryCount = data.sortedEntries.length;
+  //       data.entryCount = data.sortedEntryIds.length;
   //       return data;
   //     })
   //     .catch(error => console.log(error)),

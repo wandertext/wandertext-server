@@ -49,7 +49,7 @@ module.exports = {
             img_credit: imgCredit,
             img_src: imgSrc,
             img_href: imgHref,
-            sorted_entries: sortedEntries,
+            sorted_entry_ids: sortedEntries,
             entry_properties: JSON.stringify(entryProperties),
             popup_template: popupTemplate,
             created_at,
