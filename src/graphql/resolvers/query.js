@@ -5,6 +5,7 @@ const Query = {
   contributor: (_, { id }, context) => getOne("Contributor", id, context),
   contributors: (_, __, context) => getAll("Contributor", context),
   entries: (_, __, context) => getAll("Entry", context),
+  entry: (_, { id }, context) => getOne("Entry", id, context),
   places: (_, __, context) => getAll("Place", context),
   place: (_, { id }, context) => getOne("Place", id, context),
   texts: (_, __, context) => getAll("Text", context),

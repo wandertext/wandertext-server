@@ -103,6 +103,7 @@ const typeDefs = gql`
     contributor(id: ID!): Contributor
     contributors: [Contributor]!
     entries: [Entry]
+    entry(id: ID!): Entry
     places: [Place]
     place(id: ID!): Place
     text(id: ID!): Text
