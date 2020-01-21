@@ -71,6 +71,7 @@ export default function models() {
     ContributorPlace,
     ContributorText,
     Flag,
-    Text
+    Text,
+    sequelize
   };
 }
