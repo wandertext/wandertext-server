@@ -3,7 +3,7 @@ import { GraphQLDateTime } from "graphql-iso-date";
 import Query from "./query";
 import Contributor from "./contributor";
 import Text from "./text";
-import Mutation from "./mutation";
+import Mutation from "./mutations";
 
 const resolvers = {
   JSON: GraphQLJSON,
