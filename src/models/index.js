@@ -45,8 +45,8 @@ export default function models() {
     through: ContributorEntry,
     unique: false
   });
-  Entry.belongsTo(Text, { foreignKey: "text_id" });
-  Entry.belongsTo(Place, { foreignKey: "place_id" });
+  Entry.belongsTo(Text, { foreignKey: "textId" });
+  Entry.belongsTo(Place, { foreignKey: "placeId" });
   Entry.belongsToMany(Contributor, {
     through: ContributorEntry,
     unique: false
