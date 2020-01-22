@@ -29,6 +29,7 @@ const typeDefs = gql`
     contributors: [Contributor]
     text: Text
     place: Place
+    placeId: String
     flags: [Flag]
   }
 
