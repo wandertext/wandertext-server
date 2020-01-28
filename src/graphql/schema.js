@@ -27,8 +27,8 @@ const typeDefs = gql`
     createdAt: DateTime
     modifiedAt: DateTime
     contributors: [Contributor]
-    text: Text
-    place: Place
+    text: Text!
+    place: Place!
     placeId: String
     flags: [Flag]
   }
