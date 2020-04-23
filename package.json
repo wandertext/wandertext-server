@@ -27,7 +27,7 @@
     "chai-as-promised": "^7.1.1",
     "mocha": "^7.0.0",
     "nodemon": "^2.0.2",
-    "pg": "^7.17.0",
+    "pg": "^8.0.3",
     "pg-hstore": "^2.3.3",
     "rimraf": "^3.0.0",
     "sequelize": "^7.0.0-next.1",
